@@ -90,7 +90,7 @@ public class SubjectRestController {
 		return sr.retrievemaxSubjectByStars();
 		}
 					
-		// http://localhost:9091/SpringMVC/servlet/retrieve-max-stars-subject
+		// http://localhost:9091/SpringMVC/servlet/retrieve-min-stars-subject
 		@GetMapping("/retrieve-min-stars-subject")
 		@ResponseBody
 		public float retrieveMinStarsSubject() {
