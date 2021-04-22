@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
@@ -26,8 +27,10 @@ public class Basket implements Serializable {
 	private int productNumberBasket ;
 	private float amountBasket;
 	
+	@JsonIgnore
 	@OneToOne (mappedBy="Basket")
 	User user;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="Basket")
 	private Set<Product> Product;
 	
