@@ -6,13 +6,18 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
 
+@Repository
 public interface IUserRepository extends CrudRepository<User, Integer>{
-
-	//List<User> findByPointNumberGreaterThan(int pointNumber);
+	
+	List<User> findByPointnumber(int pointNumber);
+	
+	User findByUsername(String username);
 	
 	List<User> findByStateUser(boolean stateUser);
 	
@@ -22,9 +27,17 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	
 	List<User> findBySexeUser(SexeType sexeUser);
 	
-	List<User> findBySalaireGreaterThan (float salaryDepartmentManager);
+	List<User> findBySalaireGreaterThan (float salaire);
+	
+	List<User> findBySalaireLessThan (float salaire);
 	
 	long  count();
+	
+	User findUserByresettoken(String login);
+	
+	User findByEmailUser(String emailUser);
+	
+	List<User> findByRole(Role role);
 	
 	@Query("SELECT AVG(u.salaire) from User u")
 	float retrievemoysalaire();
@@ -54,10 +67,8 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	List<String> getMaxRank();
 	
 	@Query("SELECT e.phoneNumberUser,e.adressUser FROM User e GROUP BY e.adressUser")
-	List<String> getphonegoupbyadress();
+	List<String> getphonegroupbyadress();
 	
 	@Query("SELECT MAX(e.birthDateUser) FROM User e ")
 	Date getminage();
-
-
 }

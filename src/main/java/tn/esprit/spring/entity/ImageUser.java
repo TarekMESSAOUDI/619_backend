@@ -114,6 +114,15 @@ public class ImageUser implements MultipartFile {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public ImageUser(String nameImageUser,String contenttype, byte[] data) {
+		super();
+		this.nameImageUser = nameImageUser;
+		this.getContentType();
+		this.data = data;
+	}
 
 	public ImageUser(int idImageUser, String nameImageUser, byte[] data, User user) {
 		super();
