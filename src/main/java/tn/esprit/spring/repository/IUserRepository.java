@@ -63,9 +63,6 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	@Query("SELECT e.username,e.emailUser FROM User e")
 	List<String> getAllClientNames();
 	
-	@Query("SELECT MAX(e.pointnumber),e.phoneNumberUser FROM User e")
-	List<String> getMaxRank();
-	
 	@Query("SELECT e.phoneNumberUser,e.adressUser FROM User e GROUP BY e.adressUser")
 	List<String> getphonegroupbyadress();
 	

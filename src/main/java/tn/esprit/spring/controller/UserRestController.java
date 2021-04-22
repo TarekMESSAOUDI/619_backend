@@ -65,7 +65,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-point/{user-point}
-	@GetMapping("/retrieve-user-by-point/{client-point}")
+	@GetMapping("/retrieve-user-by-point/{user-point}")
 	@ResponseBody
 	public List<User> retrieveUsertByPoint(@PathVariable("user-point") int pointNumber) {
 	return us.retrieveUserByPoint(pointNumber);
@@ -113,11 +113,25 @@ public class UserRestController {
 	return us.findBymail(emailUser);
 	}
 	
-	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salary/{user-salaire}
+	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salaire/{user-salaire}
 	@GetMapping("/retrieve-user-by-salaire/{user-salaire}")
 	@ResponseBody
-	public List<User> retrieveUserBySexe(@PathVariable("user-salaire") float salaire) {
+	public List<User> retrieveUserBySalary(@PathVariable("user-salaire") float salaire) {
 	return us.retrieveUserBysalary(salaire);
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salairegt/{user-salaire}
+	@GetMapping("/retrieve-user-by-salairegt/{user-salaire}")
+	@ResponseBody
+	public List<User> retrieveUserBySalarygt(@PathVariable("user-salaire") float salaire) {
+	return ur.findBySalaireGreaterThan(salaire);
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salairelt/{user-salaire}
+	@GetMapping("/retrieve-user-by-salairelt/{user-salaire}")
+	@ResponseBody
+	public List<User> retrieveUserBySalarylt(@PathVariable("user-salaire") float salaire) {
+	return ur.findBySalaireLessThan(salaire);
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-role/{user-role}
@@ -127,34 +141,64 @@ public class UserRestController {
 	return us.findByRole(role);
 	}
 	
+	// http://localhost:9091/SpringMVC/servlet/users-names
+	@GetMapping("/users-names")
+	public List<String> getAllUsersNames() throws Exception {
+	return ur.getAllClientNames();
+	}
+	
 	// http://localhost:9091/SpringMVC/servlet/activate-user
 	@PutMapping("/activate-user")
 	public User activateUser(@RequestBody User user) throws Exception {
 	return us.activateUser(user);
 	}
 	
-	// http://localhost:9091/SpringMVC/servlet/desactivate-user
+	// http://localhost:9091/SpringMVC/servlet/desactivate-User
 	@PutMapping("/desactivate-User")
 	public User desactivateUser(@RequestBody User user) throws Exception {
 	return us.desactivateUser(user);
 	}
 	
-	// http://localhost:9090/SpringMVC/servlet/count-client
-	@GetMapping("/count-client")
+	// http://localhost:9091/SpringMVC/servlet/count-user
+	@GetMapping("/count-user")
 	@ResponseBody
 	public long retrieveClientByCount() {
 	return us.retrieveUserByCount();
 	}
 	
-	// http://localhost:9090/SpringMVC/servlet/findActivatedUser
+	// http://localhost:9091/SpringMVC/servlet/findActivatedUser
 	@GetMapping("/findActivatedUser")
 	public List<String> findUserActivated() throws Exception {
 		return us.findUsersActivated();
 	}
 
-	// http://localhost:9090/SpringMVC/servlet/findDisabledUser
+	// http://localhost:9091/SpringMVC/servlet/findDisabledUser
 	@GetMapping("/findDisabledUser")
 	public List<String> findUserDisabled() throws Exception {
 		return us.getUsersFromDisabled();
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/moy-salaire
+	@GetMapping("/moy-salaire")
+	public float salairemoyenne() throws Exception {
+	return ur.retrievemoysalaire();
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/somme-salaire
+	@GetMapping("/somme-salaire")
+	public float salairesomme() throws Exception {
+	return ur.retrievesommesalaire();
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/max-salaire
+	@GetMapping("/max-salaire")
+	public float salairemax() throws Exception {
+	return ur.retrievemaxsalaire();
+	}
+	
+	// http://localhost:9091/SpringMVC/servlet/min-age
+	@GetMapping("/min-age")
+	public Date agemin() throws Exception {
+	return ur.getminage();
 	}
 }

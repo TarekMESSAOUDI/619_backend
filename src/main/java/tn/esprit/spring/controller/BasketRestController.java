@@ -43,8 +43,8 @@ public class BasketRestController {
 		return bs.deleteBasket(idBasket);
 		}
 		
-		// http://localhost:9091/SpringMVC/servlet/affect-basket-to-client
-		@PostMapping("/affect-basket-to-client/{idbasket}/{iduser}")
+		// http://localhost:9091/SpringMVC/servlet/affect-basket-to-user
+		@PostMapping("/affect-basket-to-user/{idbasket}/{iduser}")
 		@ResponseBody
 		public void affectationBasketToClient(@PathVariable("idbasket")int idBasket,@PathVariable("iduser")int idUser) throws IOException{
 		bsi.affectationBasketToClient(idBasket, idUser);
