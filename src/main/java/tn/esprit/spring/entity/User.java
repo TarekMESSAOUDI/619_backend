@@ -72,7 +72,7 @@ public class User implements Serializable {
 	private Set<Comment> Comment;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private Set<ImageUser1> ImageUser1;
+	private Set<ImageUser> ImageUser1;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Claim> Claim;
@@ -322,11 +322,11 @@ public class User implements Serializable {
 		Comment = comment;
 	}
 
-	public Set<ImageUser1> getImageUser1() {
+	public Set<ImageUser> getImageUser1() {
 		return ImageUser1;
 	}
 
-	public void setImageUser1(Set<ImageUser1> imageUser1) {
+	public void setImageUser1(Set<ImageUser> imageUser1) {
 		ImageUser1 = imageUser1;
 	}
 
@@ -381,7 +381,7 @@ public class User implements Serializable {
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, int pointnumber, boolean avilaibility,
 			ZoneMap zone, Role role, Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
-			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser1> imageUser1,
+			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
 			Set<tn.esprit.spring.entity.Claim> claim, Set<tn.esprit.spring.entity.CharityEvent> charityEvent,
 			Set<tn.esprit.spring.entity.Publicity> publicity, Set<tn.esprit.spring.entity.Delivery> delivery,
 			Set<tn.esprit.spring.entity.Department> department) {
@@ -429,7 +429,7 @@ public class User implements Serializable {
 			String resettoken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
 			float salaire, int pointnumber, boolean avilaibility, ZoneMap zone, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
-			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser1> imageUser1,
+			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
 			Set<tn.esprit.spring.entity.Claim> claim, Set<tn.esprit.spring.entity.CharityEvent> charityEvent,
 			Set<tn.esprit.spring.entity.Publicity> publicity, Set<tn.esprit.spring.entity.Delivery> delivery,
 			Set<tn.esprit.spring.entity.Department> department) {
@@ -544,7 +544,7 @@ public class User implements Serializable {
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, int pointnumber, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
-			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser1> imageUser1,
+			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
 			Set<tn.esprit.spring.entity.Claim> claim, Set<tn.esprit.spring.entity.CharityEvent> charityEvent,
 			Set<tn.esprit.spring.entity.Publicity> publicity, Set<tn.esprit.spring.entity.Delivery> delivery,
 			Set<tn.esprit.spring.entity.Department> department) {
@@ -589,7 +589,7 @@ public class User implements Serializable {
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
-			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser1> imageUser1,
+			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
 			Set<tn.esprit.spring.entity.Claim> claim, Set<tn.esprit.spring.entity.CharityEvent> charityEvent,
 			Set<tn.esprit.spring.entity.Publicity> publicity, Set<tn.esprit.spring.entity.Delivery> delivery,
 			Set<tn.esprit.spring.entity.Department> department) {

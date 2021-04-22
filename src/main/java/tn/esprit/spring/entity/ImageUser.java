@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "T_IMAGE_USER")
-public class ImageUser1 implements MultipartFile {
+public class ImageUser implements MultipartFile {
 	
 	private static long SerialVersionUID=1L;
 	
@@ -110,12 +110,12 @@ public class ImageUser1 implements MultipartFile {
 		this.user = user;
 	}
 
-	public ImageUser1() {
+	public ImageUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ImageUser1(int idImageUser, String nameImageUser, byte[] data, User user) {
+	public ImageUser(int idImageUser, String nameImageUser, byte[] data, User user) {
 		super();
 		this.idImageUser = idImageUser;
 		this.nameImageUser = nameImageUser;
@@ -123,21 +123,21 @@ public class ImageUser1 implements MultipartFile {
 		this.user = user;
 	}
 
-	public ImageUser1(String nameImageUser, byte[] data, User user) {
+	public ImageUser(String nameImageUser, byte[] data, User user) {
 		super();
 		this.nameImageUser = nameImageUser;
 		this.data = data;
 		this.user = user;
 	}
 
-	public ImageUser1(int idImageUser, String nameImageUser, byte[] data) {
+	public ImageUser(int idImageUser, String nameImageUser, byte[] data) {
 		super();
 		this.idImageUser = idImageUser;
 		this.nameImageUser = nameImageUser;
 		this.data = data;
 	}
 
-	public ImageUser1(String nameImageUser, byte[] data) {
+	public ImageUser(String nameImageUser, byte[] data) {
 		super();
 		this.nameImageUser = nameImageUser;
 		this.data = data;
