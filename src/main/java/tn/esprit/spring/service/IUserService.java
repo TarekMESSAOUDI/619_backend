@@ -3,13 +3,15 @@ package tn.esprit.spring.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
 
 public interface IUserService {
 	
-	User addUser(User user);
+	ResponseEntity<?> addUser(User user);
 
 	User updateUser(User user);
 

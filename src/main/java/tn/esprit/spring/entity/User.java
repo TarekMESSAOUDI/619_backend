@@ -40,7 +40,6 @@ public class User implements Serializable {
 	@Temporal (TemporalType.DATE)
 	protected Date birthDateUser ;
 	protected String emailUser ;
-	protected String imageUser ;
 	@Enumerated (EnumType.STRING)
 	protected SexeType sexeUser ;
 	protected boolean accountNonLocked;
@@ -176,14 +175,6 @@ public class User implements Serializable {
 
 	public void setEmailUser(String emailUser) {
 		this.emailUser = emailUser;
-	}
-
-	public String getImageUser() {
-		return imageUser;
-	}
-
-	public void setImageUser(String imageUser) {
-		this.imageUser = imageUser;
 	}
 
 	public SexeType getSexeUser() {
@@ -377,7 +368,7 @@ public class User implements Serializable {
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
-			Date birthDateUser, String emailUser, String imageUser, SexeType sexeUser, boolean accountNonLocked,
+			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, int pointnumber, boolean avilaibility,
 			ZoneMap zone, Role role, Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
@@ -397,7 +388,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
@@ -425,7 +415,7 @@ public class User implements Serializable {
 
 	public User(String username, String lastNameUser, String cinUser, String password, String confirmPasswordUser,
 			boolean stateUser, String phoneNumberUser, String adressUser, Date birthDateUser, String emailUser,
-			String imageUser, SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
+			SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
 			String resettoken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
 			float salaire, int pointnumber, boolean avilaibility, ZoneMap zone, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
@@ -444,7 +434,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
@@ -472,7 +461,7 @@ public class User implements Serializable {
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
-			Date birthDateUser, String emailUser, String imageUser, SexeType sexeUser, boolean accountNonLocked,
+			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, int pointnumber, boolean avilaibility,
 			ZoneMap zone, Role role) {
@@ -488,7 +477,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
@@ -507,7 +495,7 @@ public class User implements Serializable {
 
 	public User(String username, String lastNameUser, String cinUser, String password, String confirmPasswordUser,
 			boolean stateUser, String phoneNumberUser, String adressUser, Date birthDateUser, String emailUser,
-			String imageUser, SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
+			SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
 			String resettoken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
 			float salaire, int pointnumber, boolean avilaibility, ZoneMap zone, Role role) {
 		super();
@@ -521,7 +509,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
@@ -540,7 +527,7 @@ public class User implements Serializable {
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
-			Date birthDateUser, String emailUser, String imageUser, SexeType sexeUser, boolean accountNonLocked,
+			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, int pointnumber, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
@@ -560,7 +547,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
@@ -585,7 +571,7 @@ public class User implements Serializable {
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
-			Date birthDateUser, String emailUser, String imageUser, SexeType sexeUser, boolean accountNonLocked,
+			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
 			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
@@ -605,7 +591,6 @@ public class User implements Serializable {
 		this.adressUser = adressUser;
 		this.birthDateUser = birthDateUser;
 		this.emailUser = emailUser;
-		this.imageUser = imageUser;
 		this.sexeUser = sexeUser;
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
