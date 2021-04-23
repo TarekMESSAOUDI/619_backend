@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@JsonIgnoreProperties
 @Entity
 @Table (name = "T_PUBLICITY")
 public class Publicity implements Serializable {
@@ -245,7 +249,14 @@ public class Publicity implements Serializable {
 		this.descriptionPublicity = descriptionPublicity;
 		InitialViewNumber = initialViewNumber;
 		this.finalViewNumber = finalViewNumber;
+	}
+
+	public Publicity() {
+		super();
+		// TODO Auto-generated constructor stub
 	} 
+	
+	
 	
 	
 	
