@@ -25,7 +25,7 @@ public class DynamsoftBarcode {
     }
     
     
-    public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
+   /* public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
         try {
            LOG.info("Decoding barcodes...");
 
@@ -50,7 +50,7 @@ public class DynamsoftBarcode {
             LOG.error(ex.getMessage());
             return BarcodeResponse.builder().filename(filename).error(ex.getMessage()).build();
         }
-    }
+    }*/
     
     
 
