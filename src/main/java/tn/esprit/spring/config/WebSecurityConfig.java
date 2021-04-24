@@ -1,12 +1,17 @@
 package tn.esprit.spring.config;
 
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -53,7 +58,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 		// dont authenticate this particular request
-		.authorizeRequests().antMatchers("/servlet/authenticate").permitAll().antMatchers("/servlet/add-user").permitAll()
+		.authorizeRequests().antMatchers("/servlet/authenticate").permitAll()
+		.antMatchers("/servlet/add-user").permitAll()
+		.antMatchers("/servlet/forgot/{email}").permitAll()
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to
@@ -63,5 +70,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	}
+	
+	@Bean
+    public JavaMailSender javaMailSender() { 
+    	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    	mailSender.setHost("smtp.gmail.com");
+    	mailSender.setPort(587);
+    	mailSender.setUsername("tarek.messaoudi.1996@gmail.com");
+    	mailSender.setPassword("curvanord123kingzoogataga");
+    	Properties props = mailSender.getJavaMailProperties();
+    	props.put("mail.transport.protocol", "smtp");
+    	props.put("mail.smtp.auth", "true");
+    	props.put("mail.smtp.starttls.enable", "true");
+    	props.put("mail.debug", "true");
+    	return mailSender;
+    }
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().regexMatchers("^(/servlet/authenticate).*");
 	}
 }

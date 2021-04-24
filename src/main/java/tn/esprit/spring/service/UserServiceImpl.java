@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements IUserService{
 	
 	@Autowired
 	PasswordEncoder encoder;
+	
 
 	@Override
 	public ResponseEntity<?> addUser(User user) {
@@ -38,6 +40,9 @@ public class UserServiceImpl implements IUserService{
 		
 		if (user == null) {
 			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add values!"));
+		}
+		if (user.getPassword().equals(user.getConfirmPasswordUser() != null)) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Confirm your password!"));
 		}
 		if (user.getAdressUser().equals("")) {
 			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add address!"));
@@ -56,14 +61,21 @@ public class UserServiceImpl implements IUserService{
 		}
 		if (us.retrieveUserByUsername(user.getUsername()) != null) {
 			return ResponseEntity.badRequest().body(new ResponseMessage("Error: Username is already taken!"));
-		}else
+		}
+		if (us.findBymail(user.getEmailUser()) != null) {
+				return ResponseEntity.badRequest().body(new ResponseMessage("Error: Email is already taken!"));		
+		}
 		ur.save(user);
-		return ResponseEntity.badRequest().body(new ResponseMessage("user added Succefully"));
+		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
 	}
 
 	@Override
-	public User updateUser(User user) {
-		return ur.save(user);
+	public User updateUser(@RequestBody User user) throws Exception {
+		User userinthedatabase = us.retrieveUserById(user.getIdUser());
+		if (!encoder.encode(user.getPassword()).equals(userinthedatabase.getPassword())) {
+			user.setPassword(encoder.encode(user.getPassword()));
+		}
+		return us.updateUser(user);
 	}
 
 	@Override
