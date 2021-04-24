@@ -111,7 +111,7 @@ public Stock updateStock(Stock s) {
 		existingStk.setTypeStock(st.getTypeStock());
 		existingStk.setCapacityStock(st.getCapacityStock());
 		existingStk.setQuantityStock(st.getQuantityStock());
-		existingStk.setSellingcost(st.getSellingcost());
+		;
 
 		
 		

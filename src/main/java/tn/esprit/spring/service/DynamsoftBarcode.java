@@ -16,6 +16,7 @@ public class DynamsoftBarcode {
 	
 	
 	
+	
 	private static final Logger LOG = LoggerFactory.getLogger(DynamsoftBarcode.class);
     private String license;
     

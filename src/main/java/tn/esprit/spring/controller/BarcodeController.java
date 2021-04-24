@@ -35,6 +35,7 @@ public class BarcodeController {
     public BarcodeResponse getDynamsoft(@RequestPart MultipartFile file) throws Exception {
         return mDynamsoftBarcode.decode(file.getOriginalFilename(), file.getInputStream());
     }
+    
 
     @PostMapping(value = "/zxing"
             , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
