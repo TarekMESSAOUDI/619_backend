@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class ClaimRestController{
 	
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-all-claims
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-all-claims")
 	@ResponseBody
 	public List<Claim> getClaims() {
@@ -46,6 +48,7 @@ public class ClaimRestController{
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/remove-claim/{claim-id}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@DeleteMapping("/remove-claim/{claim-id}")
 	@ResponseBody
 	public void removeUser(@PathVariable("claim-id") int idClaim) {
@@ -53,6 +56,7 @@ public class ClaimRestController{
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/modify-claim
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PutMapping("/modify-claim")
 	@ResponseBody
 	public Claim modifyClaim(@RequestBody Claim c) {

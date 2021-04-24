@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class BillController {
 		}
 	
 	// URL : http://localhost:9091/SpringMVC/servlet/getAllBill
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	    @GetMapping(value = "getAllBill")
 	  
 	    public List<Bill> getAllBill(){
@@ -39,6 +41,7 @@ public class BillController {
 		}
 	    
 	 // URL : http://localhost:9091/SpringMVC/servlet/delete-bill
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		   @DeleteMapping(value = "delete-bill/{idBill}")
 		   
 			public void deleteBill(@PathVariable("idBill")Long idBill){
@@ -46,6 +49,7 @@ public class BillController {
 		   }
 		   
 		// http://localhost:9091/SpringMVC/servlet/modify-bill
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			@PutMapping("/modify-bill")
 			@ResponseBody
 			public Bill modifyBill(@RequestBody Bill bill) {
@@ -53,6 +57,7 @@ public class BillController {
 			}
 			
 		// URL : http://localhost:9091/SpringMVC/servlet/getBill_by_ID/8
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('CLIENT') or hasAuthority('DELIVERYPERSON')")
 			 @GetMapping(value = "getBill_by_ID/{idBill}")
 			   
 			 public Optional<Bill> getBill_by_ID(@PathVariable("idBill")Long idBill) {
@@ -60,6 +65,7 @@ public class BillController {
 			}
 			 
 		// URL : http://localhost:9091/SpringMVC/servlet/getBill_by_Type/At_Delivery
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			 @GetMapping(value = "getBill_by_Type/{paymentType}")
 			   
 			 public List<Bill> getBill_by_Type(@PathVariable("paymentType")PaymentType paymentType) {
@@ -68,6 +74,7 @@ public class BillController {
 			 
 			 
 			// URL : http://localhost:9091/SpringMVC/servlet/getAllBill_by_Order/1
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			 @GetMapping(value = "getAllBill_by_Order/{idOrder}")
 			   
 			 public List<Bill> getAllBill_by_Order(@PathVariable("idOrder")Long idOrder) {
@@ -77,6 +84,7 @@ public class BillController {
 			 
 			 
 			// URL : http://localhost:9091/SpringMVC/servlet/modify_type_bill
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			   @PutMapping(value = "modify_type_bill/{idBill}/{paymentType}")
 			   @ResponseBody
 				public void modify_type_bill(@PathVariable("paymentType")PaymentType paymentType,@PathVariable("idBill")Long idBill){
@@ -85,7 +93,7 @@ public class BillController {
 				}
 			   
 			// URL : http://localhost:9091/SpringMVC/servlet/get_payment_type_by_idBill
-
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('CLIENT') or hasAuthority('DELIVERYPERSON')")
 			   @GetMapping(value = "get_payment_type_by_idBill/{idBill}")
 			  
 
@@ -95,6 +103,7 @@ public class BillController {
 			   }
 			 
 			// URL : http://localhost:9091/SpringMVC/servlet//showPDF/{idBill}
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('CLIENT') or hasAuthority('DELIVERYPERSON')")
 			   @GetMapping("/showPDF/{idBill}")
 			   public void billpdf (@PathVariable("idBill") Long idBill) {
 				   

@@ -4,6 +4,7 @@ package tn.esprit.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class CategoryRestController {
 	ICategoryService CS;
 	
 	//  http://localhost:9090/SpringMVC/servlet/add-category
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@PostMapping("/add-category")
 		@ResponseBody
 		public Category addProduct(@RequestBody Category c) {
@@ -34,6 +36,7 @@ public class CategoryRestController {
 		
 		
 		//   http://localhost:9090/SpringMVC/servlet/remove-category/{categorytId}
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@DeleteMapping("/remove-category/{categorytId}")
 		@ResponseBody
 		public void removeCategory(@PathVariable("categorytId") int catId) {
@@ -43,6 +46,7 @@ public class CategoryRestController {
 		
 		
 		//  http://localhost:9090/SpringMVC/servlet/update-category
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@PutMapping("/update-category")
 		@ResponseBody
 		public Category updateProduct(@RequestBody Category c) {
@@ -60,6 +64,7 @@ public class CategoryRestController {
 		}
 		
 		//http://localhost:9090/SpringMVC/servlet/affect-undercategory-to-category/{Iduc}/{Idc}
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@PutMapping("affect-undercategory-to-category/{Iduc}/{Idc}")
 		public void affecterProduitARayon(@PathVariable(value = "Iduc") int Iduc,
 				@PathVariable(value = "Idc") int idCategory) {

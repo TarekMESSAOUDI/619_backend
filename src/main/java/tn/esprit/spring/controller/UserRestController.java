@@ -38,6 +38,7 @@ public class UserRestController {
 	}
 
 	// http://localhost:9091/SpringMVC/servlet/delete-user/{user-id}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@DeleteMapping("/delete-user/{user-id}")
 	@ResponseBody
 	public void deleteUser(@PathVariable("user-id") int userId) {
@@ -52,6 +53,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-all-user
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-all-user")
 	@ResponseBody
 	public List<User> getUser() {
@@ -67,6 +69,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-point/{user-point}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-point/{user-point}")
 	@ResponseBody
 	public List<User> retrieveUsertByPoint(@PathVariable("user-point") int pointNumber) {
@@ -81,6 +84,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-state/{user-state}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-state/{user-state}")
 	@ResponseBody
 	public List<User> retrieveUserByState(@PathVariable("user-state") boolean stateUser) {
@@ -116,6 +120,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salaire/{user-salaire}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-salaire/{user-salaire}")
 	@ResponseBody
 	public List<User> retrieveUserBySalary(@PathVariable("user-salaire") float salaire) {
@@ -123,6 +128,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salairegt/{user-salaire}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-salairegt/{user-salaire}")
 	@ResponseBody
 	public List<User> retrieveUserBySalarygt(@PathVariable("user-salaire") float salaire) {
@@ -130,6 +136,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-salairelt/{user-salaire}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-salairelt/{user-salaire}")
 	@ResponseBody
 	public List<User> retrieveUserBySalarylt(@PathVariable("user-salaire") float salaire) {
@@ -137,6 +144,7 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-user-by-role/{user-role}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-user-by-role/{user-role}")
 	@ResponseBody
 	public List<User> retrieveUserBySexe(@PathVariable("user-role") Role role) {
@@ -150,18 +158,21 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/activate-user
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PutMapping("/activate-user")
 	public User activateUser(@RequestBody User user) throws Exception {
 	return us.activateUser(user);
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/desactivate-User
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PutMapping("/desactivate-User")
 	public User desactivateUser(@RequestBody User user) throws Exception {
 	return us.desactivateUser(user);
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/count-user
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/count-user")
 	@ResponseBody
 	public long retrieveClientByCount() {
@@ -169,36 +180,42 @@ public class UserRestController {
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/findActivatedUser
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/findActivatedUser")
 	public List<String> findUserActivated() throws Exception {
 		return us.findUsersActivated();
 	}
 
 	// http://localhost:9091/SpringMVC/servlet/findDisabledUser
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/findDisabledUser")
 	public List<String> findUserDisabled() throws Exception {
 		return us.getUsersFromDisabled();
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/moy-salaire
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/moy-salaire")
 	public float salairemoyenne() throws Exception {
 	return ur.retrievemoysalaire();
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/somme-salaire
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/somme-salaire")
 	public float salairesomme() throws Exception {
 	return ur.retrievesommesalaire();
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/max-salaire
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/max-salaire")
 	public float salairemax() throws Exception {
 	return ur.retrievemaxsalaire();
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/min-age
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/min-age")
 	public Date agemin() throws Exception {
 	return ur.getminage();
