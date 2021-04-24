@@ -16,7 +16,7 @@ public class DynamsoftBarcode {
 	
 	
 	
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(DynamsoftBarcode.class);
     private String license;
     
@@ -25,8 +25,10 @@ public class DynamsoftBarcode {
         license = "LICENSE-KEY";
     }
     
-    
+
     public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
+   public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
+
         try {
            LOG.info("Decoding barcodes...");
 
@@ -52,6 +54,8 @@ public class DynamsoftBarcode {
             return BarcodeResponse.builder().filename(filename).error(ex.getMessage()).build();
         }
     }
+    }
+
     
     
 
