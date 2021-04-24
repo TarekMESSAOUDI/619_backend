@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ public class CharityEventRestController {
 	ICharityEventService eventS;
 	
 	// http://localhost:9091/SpringMVC/servlet/addEvent
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@PostMapping("/addEvent")
 		@ResponseBody
 		public CharityEvent addEvent(@RequestBody CharityEvent e) {
@@ -40,6 +42,7 @@ public class CharityEventRestController {
 				
 				
 				// http://localhost:9091/SpringMVC/servlet/remove-delivery/{idDelivery}
+				@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 				@DeleteMapping("/remove-delivery/{idEvent}")
 				@ResponseBody
 				public void removeEvent(@PathVariable("idEvent") int id) {
