@@ -99,8 +99,8 @@ public class BillController {
 			   public void billpdf (@PathVariable("idBill") Long idBill) {
 				   
 				 billService.billpdf(idBill);
+			   
 			   }
-	
 	
 	
 	
