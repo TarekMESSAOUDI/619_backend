@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Department;
-import tn.esprit.spring.entities.Stock;
-import tn.esprit.spring.entities.TypeStock;
+import tn.esprit.spring.entity.Department;
+import tn.esprit.spring.entity.Stock;
+import tn.esprit.spring.entity.TypeStock;
 import tn.esprit.spring.repository.StockRepository;
 import tn.esprit.spring.service.StockService;
 

@@ -31,17 +31,25 @@ public class BarcodeController {
     }
     
     //http://localhost:9090/SpringMVC/servlet/dynamsoft
-    /*@PostMapping(value = "/dynamsoft", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @PostMapping(value = "/dynamsoft", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public BarcodeResponse getDynamsoft(@RequestPart MultipartFile file) throws Exception {
         return mDynamsoftBarcode.decode(file.getOriginalFilename(), file.getInputStream());
     }
+    
+
+
 
     @PostMapping(value = "/zxing"
             , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
             , produces = MediaType.APPLICATION_JSON_VALUE)
     public BarcodeResponse getZXing(@RequestPart MultipartFile file) throws Exception {
         return mZXingBarcode.decode(file.getOriginalFilename(), file.getInputStream());
-    }*/
+
+    }
+
+    }
+
 
 	
 }

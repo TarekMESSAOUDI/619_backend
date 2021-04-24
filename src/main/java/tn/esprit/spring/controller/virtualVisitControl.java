@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import fileUpmessage.ResponseMessage;
+import tn.esprit.spring.response.ResponseMessage;
 import tn.esprit.spring.service.VirtualVisitService;
 
 @RestController
