@@ -13,7 +13,7 @@ public interface IUserService {
 	
 	ResponseEntity<?> addUser(User user);
 
-	User updateUser(User user);
+	User updateUser(User user) throws Exception;
 
 	boolean deleteUser(int idUser);
 
