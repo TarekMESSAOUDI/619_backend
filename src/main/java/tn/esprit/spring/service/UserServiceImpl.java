@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.exception.UserNotFoundException;
 import tn.esprit.spring.response.ResponseMessage;
 import tn.esprit.spring.repository.IUserRepository;
 
@@ -69,6 +71,35 @@ public class UserServiceImpl implements IUserService{
 		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
 	}
 
+	@Override
+	public void updateResettoken(String token, String emailUser) throws UserNotFoundException{
+		User user = ur.findByEmailUser(emailUser);
+		if (user != null){
+			user.setResettoken(token);
+			ur.save(user);
+		}else{
+			throw new UserNotFoundException("could not find User with email" + emailUser);
+		}
+	}
+	
+	@Override
+	public User get(String resettoken){
+		return ur.findByResettoken(resettoken);
+	}
+	
+	@Override
+	public void updatePassword(User user, String newPassword){
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(newPassword);
+		
+		user.setPassword(encodedPassword);
+		user.setResettoken(null);
+		
+		ur.save(user);
+	}
+	
+	
+	
 	@Override
 	public User updateUser(@RequestBody User user) throws Exception {
 		User userinthedatabase = us.retrieveUserById(user.getIdUser());
