@@ -3,12 +3,13 @@ package tn.esprit.spring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import fileUpmessage.ResponseMessage;
+import tn.esprit.spring.response.ResponseMessage;
 import tn.esprit.spring.service.VirtualVisitService;
 
 @RestController
@@ -17,7 +18,7 @@ public class virtualVisitControl {
 	@Autowired
 	VirtualVisitService VVS;
 	
-	
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PostMapping("/uploadrayon")
 	  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
 	    String message = "";

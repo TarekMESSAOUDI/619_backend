@@ -1,12 +1,17 @@
 package tn.esprit.spring.config;
 
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -53,7 +58,57 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 		// dont authenticate this particular request
-		.authorizeRequests().antMatchers("/servlet/authenticate").permitAll().antMatchers("/servlet/add-user").permitAll()
+		.authorizeRequests()
+		.antMatchers("/servlet/authenticate").permitAll()
+		.antMatchers("/servlet/add-user").permitAll()
+		.antMatchers("/servlet/forgot/{email}").permitAll()
+		.antMatchers("/servlet/add-basket").permitAll()
+		.antMatchers("/servlet/affect-basket-to-user/{idbasket}/{iduser}").permitAll()
+		.antMatchers("/servlet/add-bill").permitAll()
+		.antMatchers("/servlet/show-all-categories").permitAll()
+		.antMatchers("/servlet/retrieve-by-name/{nameCat}").permitAll()
+		.antMatchers("/servlet/retrieve-cat-by-id/{id}").permitAll()
+		.antMatchers("/servlet/retrieveallEvent").permitAll()
+		.antMatchers("/servlet/FaireReservation/{idReservation}/{idUser}/{idEvent}").permitAll()
+		.antMatchers("/servlet/addReservation").permitAll()
+		.antMatchers("/servlet/add-claim").permitAll()
+		.antMatchers("/servlet/retrieve-claim/{claim-id}").permitAll()
+		.antMatchers("/servlet/retrieve-all-Comments").permitAll()
+		.antMatchers("/servlet/retrieve-comment/{comment-id}").permitAll()
+		.antMatchers("/servlet/remove-comment/{comment-id}").permitAll()
+		.antMatchers("/servlet/modify-comment").permitAll()
+		.antMatchers("/servlet/afficherNbcomment").permitAll()
+		.antMatchers("/servlet/add-comment").permitAll()
+		.antMatchers("/servlet/affecterSubjecttoComment/{ids}/{id}").permitAll()
+		.antMatchers("/servlet/Getcommentbysubject/{idComment}").permitAll()
+		.antMatchers("/servlet/retrieve-department/{department-id}").permitAll()
+		.antMatchers("/servlet/retrieve-all-Departments").permitAll()
+		.antMatchers("/servlet/uploaded").permitAll()
+		.antMatchers("/servlet/affect-image-to-user/{idimage}/{iduser}").permitAll()
+		.antMatchers("/servlet/show-all-products").permitAll()
+		.antMatchers("/servlet/GetByOneName/{productName}").permitAll()
+		.antMatchers("/servlet/GetById/{productId}").permitAll()
+		.antMatchers("/servlet/ShowAllByName/{productName}").permitAll()
+		.antMatchers("/servlet/show-all-publicities").permitAll()
+		.antMatchers("/servlet/get-by-Name-all-publicities-by-name/{PubName}").permitAll()
+		.antMatchers("/servlet/get-by-id-publicity/{publicityId}").permitAll()
+		.antMatchers("/servlet/retrieve-all-subjects").permitAll()
+		.antMatchers("/servlet/retrieve-subject-by-id/{subject-id}").permitAll()
+		.antMatchers("/servlet/retrieve-subject-by-title/{subject-title}").permitAll()
+		.antMatchers("/servlet/retrieve-subject-by-starsgreater/{subject-stars}").permitAll()
+		.antMatchers("/servlet/retrieve-max-stars-subject").permitAll()
+		.antMatchers("/servlet/retrieve-min-stars-subject").permitAll()
+		.antMatchers("/servlet/retrieve-subject-by-starsless/{subject-starsless}").permitAll()
+		.antMatchers("/servlet/show-all-under-categories").permitAll()
+		.antMatchers("/servlet/GetByIdUnderCat/{underCategorytId}").permitAll()
+		.antMatchers("/servlet/update-user").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-id/{user-id}").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-username/{user-username}").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-adress/{user-adress}").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-date/{user-date}").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-sexe/{user-sexe}").permitAll()
+		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
+		.antMatchers("/servlet/users-names").permitAll()
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to
@@ -63,5 +118,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	}
+	
+	@Bean
+    public JavaMailSender javaMailSender() { 
+    	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    	mailSender.setHost("smtp.gmail.com");
+    	mailSender.setPort(587);
+    	mailSender.setUsername("tarek.messaoudi.1996@gmail.com");
+    	mailSender.setPassword("curvanord123kingzoogataga");
+    	Properties props = mailSender.getJavaMailProperties();
+    	props.put("mail.transport.protocol", "smtp");
+    	props.put("mail.smtp.auth", "true");
+    	props.put("mail.smtp.starttls.enable", "true");
+    	props.put("mail.debug", "true");
+    	return mailSender;
+    }
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().regexMatchers("^(/servlet/authenticate).*");
 	}
 }
