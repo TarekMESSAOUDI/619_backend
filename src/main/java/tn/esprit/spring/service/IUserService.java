@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.exception.UserNotFoundException;
 
 public interface IUserService {
 	
@@ -58,6 +59,12 @@ public interface IUserService {
 	void lock(User user);
 	
 	public User findUserByResetToken(String token);
+
+	void updateResettoken(String token, String emailUser) throws UserNotFoundException;
+
+	User get(String resettoken);
+
+	void updatePassword(User user, String newPassword);
 
 
 }
