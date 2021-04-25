@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,6 +114,7 @@ public class CommentRestControler {
 			//http://localhost:9090/SpringMVC/servlet/maxdislike
 			
 			@GetMapping("/maxdislike")
+			@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			public int getdislike() {
 				 return Cr.MaxDislike();
 
@@ -122,6 +123,7 @@ public class CommentRestControler {
 //http://localhost:9090/SpringMVC/servlet/maxlike
 			
 			@GetMapping("/maxlike")
+			@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			public int getlike() {
 				 return Cr.Maxlike();
 
@@ -130,6 +132,7 @@ public class CommentRestControler {
 //http://localhost:9090/SpringMVC/servlet/Totallikes
 			
 			@GetMapping("/Totallikes")
+			@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			public int totallikes() {
 				 return Cr.Totallikes();
 

@@ -5,7 +5,8 @@
 	import java.util.List;
 
 	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 	import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ import tn.esprit.spring.service.DepartmentService;
 		
 		
 		
-		// http://localhost:9090/SpringMVC/servlet/retrieve-all-Departments
+		// http://localhost:9090/SpringMVC/servlet/retrieve-all-Departments)
 		@GetMapping("/retrieve-all-Departments")
 		@ResponseBody
 		public List<Department> getDepartments() {
@@ -52,6 +53,7 @@ import tn.esprit.spring.service.DepartmentService;
 			
 			
 			// http://localhost:9090/SpringMVC/servlet/add-department
+			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 			@PostMapping("/add-department")
 			@ResponseBody
 			public Department addDepartment(@RequestBody Department D) {
@@ -61,6 +63,7 @@ import tn.esprit.spring.service.DepartmentService;
 		
 		
 			// http://localhost:9090/SpringMVC/servlet/remove-department/{department-id}
+			@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 				@DeleteMapping("/remove-department/{department-id}")
 				@ResponseBody
 				public void removeDepartment(@PathVariable("department-id") int departmentId) {
@@ -71,6 +74,7 @@ import tn.esprit.spring.service.DepartmentService;
 				
 				
 				//http://localhost:9090/SpringMVC/servlet/update-Department
+			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 				@PutMapping("/update-Department")
 				@ResponseBody
 				public Department updateDepartment(@RequestBody Department dep) {
@@ -84,7 +88,8 @@ import tn.esprit.spring.service.DepartmentService;
 				
 				
 				
-		// http://localhost:9090/SpringMVC/servlet/alteProductToDepartment/{idd}/{idp}  	
+		// http://localhost:9090/SpringMVC/servlet/alteProductToDepartment/{idd}/{idp} 
+			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PutMapping("/alteProductToDepartment/{iddepartment}/{idproduct}")
 	public void AllocateProductToDepartment(@PathVariable(value = "iddepartment") int idDepartment,@PathVariable(value = "idproduct") int idProduct){
 					
@@ -95,6 +100,7 @@ import tn.esprit.spring.service.DepartmentService;
 	
 	
 	// http://localhost:9090/SpringMVC/servlet/alteFileToDepartment/{idd}/{idf}  	
+			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 @PutMapping("/alteFileToDepartment/{iddepartment}/{idImage}")
 public void AllocateFileToDepartment(@PathVariable(value = "iddepartment") int idDepartment,@PathVariable(value = "idImage") int idImage){
 				
