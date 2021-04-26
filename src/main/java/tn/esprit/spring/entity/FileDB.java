@@ -25,9 +25,18 @@ public class FileDB  implements Serializable {
   private byte[] data;
   
   	@ManyToOne
-	private Product idProduct;
+	private Product Product;
+  	
+  	@ManyToOne
+	private Publicity Publicity;
   
-  public FileDB() {
+  public Publicity getPublicity() {
+		return Publicity;
+	}
+	public void setPublicity(Publicity publicity) {
+		Publicity = publicity;
+	}
+public FileDB() {
   }
 public int getId() {
 	return id;
@@ -54,11 +63,11 @@ public void setData(byte[] data) {
 	this.data = data;
 }
 
-public Product getIdProduct() {
-	return idProduct;
+public Product getProduct() {
+	return Product;
 }
-public void setIdProduct(Product idProduct) {
-	this.idProduct = idProduct;
+public void setProduct(Product idProduct) {
+	this.Product = idProduct;
 }
 public FileDB(int id, String name, String type, byte[] data) {
 	super();
@@ -79,14 +88,14 @@ public FileDB(int id, String name, String type, byte[] data, tn.esprit.spring.en
 	this.name = name;
 	this.type = type;
 	this.data = data;
-	this.idProduct = idProduct;
+	this.Product = idProduct;
 }
 public FileDB(String name, String type, byte[] data, tn.esprit.spring.entity.Product idProduct) {
 	super();
 	this.name = name;
 	this.type = type;
 	this.data = data;
-	this.idProduct = idProduct;
+	this.Product = idProduct;
 }
   
   

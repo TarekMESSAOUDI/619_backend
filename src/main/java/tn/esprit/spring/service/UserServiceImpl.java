@@ -4,11 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.SexeType;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.exception.UserNotFoundException;
+import tn.esprit.spring.response.ResponseMessage;
 import tn.esprit.spring.repository.IUserRepository;
 
 @Service
@@ -16,15 +22,91 @@ public class UserServiceImpl implements IUserService{
 
 	@Autowired
 	IUserRepository ur;
+	
+	@Autowired
+	IUserService us;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	
 
 	@Override
-	public User addUser(User user) {
-		return ur.save(user);
+	public ResponseEntity<?> addUser(User user) {
+		
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setConfirmPasswordUser(encoder.encode(user.getConfirmPasswordUser()));
+		user.setStateUser(true);
+		user.setAccountNonLocked(true);
+		user.setFailedAttempt(0);
+		user.setRole(Role.CLIENT);
+		
+		if (user == null) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add values!"));
+		}
+		if (user.getPassword().equals(user.getConfirmPasswordUser() != null)) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Confirm your password!"));
+		}
+		if (user.getAdressUser().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add address!"));
+		}
+		if (user.getAdressUser().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add bithday date!"));
+		}
+		if (!(user.getBirthDateUser() instanceof Date)) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add bithday date!"));
+		}
+		if (user.getUsername().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add your first name!"));
+		}
+		if (user.getEmailUser().equals("") || !UserServiceImpl.validate(user.getEmailUser())) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please check your mail!"));
+		}
+		if (us.retrieveUserByUsername(user.getUsername()) != null) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: Username is already taken!"));
+		}
+		if (us.findBymail(user.getEmailUser()) != null) {
+				return ResponseEntity.badRequest().body(new ResponseMessage("Error: Email is already taken!"));		
+		}
+		ur.save(user);
+		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
 	}
 
 	@Override
-	public User updateUser(User user) {
-		return ur.save(user);
+	public void updateResettoken(String token, String emailUser) throws UserNotFoundException{
+		User user = ur.findByEmailUser(emailUser);
+		if (user != null){
+			user.setResettoken(token);
+			ur.save(user);
+		}else{
+			throw new UserNotFoundException("could not find User with email" + emailUser);
+		}
+	}
+	
+	@Override
+	public User get(String resettoken){
+		return ur.findByResettoken(resettoken);
+	}
+	
+	@Override
+	public void updatePassword(User user, String newPassword){
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(newPassword);
+		
+		user.setPassword(encodedPassword);
+		user.setResettoken(null);
+		
+		ur.save(user);
+	}
+	
+	
+	
+	@Override
+	public User updateUser(@RequestBody User user) throws Exception {
+		User userinthedatabase = us.retrieveUserById(user.getIdUser());
+		if (!encoder.encode(user.getPassword()).equals(userinthedatabase.getPassword())) {
+			user.setPassword(encoder.encode(user.getPassword()));
+		}
+		return us.updateUser(user);
 	}
 
 	@Override

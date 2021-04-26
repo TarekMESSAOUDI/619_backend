@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class SubjectRestController {
 	ISubjectRepository sr;
 	
 		// http://localhost:9091/SpringMVC/servlet/add-subject
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
 		@PostMapping("/add-subject")
 		@ResponseBody
 		public String addSubject(@RequestBody Subject sub) {
@@ -34,6 +36,7 @@ public class SubjectRestController {
 		}
 
 		// http://localhost:9091/SpringMVC/servlet/delete-subject/{subject-id}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
 		@DeleteMapping("/delete-subject/{subject-id}")
 		@ResponseBody
 		public void deleteSubject(@PathVariable("subject-id") int subjectId) {
@@ -41,6 +44,7 @@ public class SubjectRestController {
 		}
 				
 		// http://localhost:9091/SpringMVC/servlet/update-subject
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
 		@PutMapping("/update-subject")
 		@ResponseBody
 		public Subject updateSubject(@RequestBody Subject sub) {
@@ -77,6 +81,7 @@ public class SubjectRestController {
 		}
 					
 		// http://localhost:9091/SpringMVC/servlet/retrieve-moy-stars-subject
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
 		@GetMapping("/retrieve-moy-by-stars-subject")
 		@ResponseBody
 		public float retrieveMoyStarsSubject() {

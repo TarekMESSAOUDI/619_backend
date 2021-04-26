@@ -39,6 +39,8 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	
 	List<User> findByRole(Role role);
 	
+	public User findByResettoken(String token);
+	
 	@Query("SELECT AVG(u.salaire) from User u")
 	float retrievemoysalaire();
 
