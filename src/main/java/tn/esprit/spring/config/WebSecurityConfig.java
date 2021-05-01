@@ -58,7 +58,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 		// dont authenticate this particular request
+		
+		
 		.authorizeRequests()
+		
+		.antMatchers("/servlet/retrieve-all-Stocks").permitAll()
+		.antMatchers("/servlet/add-department").permitAll()
+		.antMatchers("/servlet/remove-department/{department-id}").permitAll()
+		
+		
 		.antMatchers("/servlet/authenticate").permitAll()
 		.antMatchers("/servlet/add-user").permitAll()
 		.antMatchers("/servlet/forgot/{email}").permitAll()
@@ -110,6 +118,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
 		.antMatchers("/servlet/users-names").permitAll()
 		.antMatchers("/servlet/sending").permitAll()
+		
+		
+		
+		
+		
+		
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to

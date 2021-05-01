@@ -33,8 +33,7 @@ public class Product implements Serializable {
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
-	private Set<Order> order;
+	
 	
 	@JsonIgnore
 	@ManyToOne
@@ -122,13 +121,7 @@ public class Product implements Serializable {
 		this.maxQuantityProduct = maxQuantityProduct;
 	}
 
-	public Set<Order> getOrder() {
-		return order;
-	}
-
-	public void setOrder(Set<Order> order) {
-		this.order = order;
-	}
+	
 
 	public Department getDepartment() {
 		return Department;
@@ -181,7 +174,7 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-		this.order = order;
+		
 		Department = department;
 		Basket = basket;
 		UnderCategory = underCategory;
@@ -201,7 +194,6 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-		this.order = order;
 		Department = department;
 		Basket = basket;
 		UnderCategory = underCategory;

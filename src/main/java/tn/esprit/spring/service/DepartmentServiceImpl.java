@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Department;
 import tn.esprit.spring.entity.Product;
+import tn.esprit.spring.entity.Stock;
 import tn.esprit.spring.entity.VVrayonImage;
 import tn.esprit.spring.repository.DepartmentRepository;
 import tn.esprit.spring.repository.FileVvRepository;
@@ -76,6 +77,12 @@ ProductRepository productrepository;
 	}
 	
 	
+	@Override
+	public List<Department> retrievedepartmentByName(String nameDepartment){
+		return departmentrepository.findDepByName(nameDepartment);
+	}
+	
+	
 	
 	
 	
@@ -96,18 +103,20 @@ public void deallocateProductFromDepartment(int IdDepartment, int IdProduct) {
 	Department department = departmentrepository.findById(IdDepartment).get();
 	
 	int nbp=department.getProduct().size();         //get products
-	for(int i = 0; i < nbp; i++){
-		if(department.getProduct().get(i).getId() == IdProduct){
+	for(int index = 0; index < nbp; index++){
+		
+		
+		if(department.getProduct().get(index).getId() == IdProduct){
 			
-			department.getProduct().remove(i);
+			department.getProduct().remove(index);
 			
 		}
 	
 }
 }
-*/
-	
 
+	
+*/
 	
 
 
