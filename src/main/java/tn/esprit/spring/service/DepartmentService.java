@@ -29,6 +29,10 @@ public interface DepartmentService {
 
 	void allocateFilesToDepartment(int idDepartment, int idImage);
 
+	List<Department> retrievedepartmentByName(String nameDepartment);
+
+	
+
 
 
 
