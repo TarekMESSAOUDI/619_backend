@@ -10,13 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties
 @Table(name="T_PRODUCT")
 public class Product implements Serializable {
 	
@@ -32,15 +33,17 @@ public class Product implements Serializable {
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
-	
-	
+	private String fileName;
+
 	
 	@JsonIgnore
 	@ManyToOne
 	Department Department;
 	
+	@JsonIgnore
 	@ManyToOne
 	Basket Basket;
+	
 	
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -49,6 +52,9 @@ public class Product implements Serializable {
 	@ManyToOne
 	Stock stock ;
 
+	@OneToOne
+	private FileDB FileDB;
+	
 	public int getIdProduct() {
 		return idProduct;
 	}
@@ -162,7 +168,7 @@ public class Product implements Serializable {
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
 			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
-			int maxQuantityProduct, Set<Order> order, tn.esprit.spring.entity.Department department,
+			int maxQuantityProduc, tn.esprit.spring.entity.Department department,
 			tn.esprit.spring.entity.Basket basket, tn.esprit.spring.entity.UnderCategory underCategory, Stock stock) {
 		super();
 		this.idProduct = idProduct;
@@ -174,15 +180,29 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-		
-		Department = department;
+  	Department = department;
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;
 	}
 
+	public FileDB getFileDB() {
+		return FileDB;
+	}
+
+	public void setFileDB(FileDB fileDB) {
+		FileDB = fileDB;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
-			int barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct, Set<Order> order,
+			int barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct, 
 			tn.esprit.spring.entity.Department department, tn.esprit.spring.entity.Basket basket,
 			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock) {
 		super();

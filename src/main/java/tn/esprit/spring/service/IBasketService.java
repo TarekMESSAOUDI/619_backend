@@ -9,6 +9,9 @@ public interface IBasketService {
 	Basket addBasket(Basket basket);
 
 	boolean deleteBasket(int id);
-
+	
+	void addProductTosBasket(int idbasket,int idProduct);
+	
+	
 
 }
