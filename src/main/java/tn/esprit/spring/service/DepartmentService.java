@@ -23,7 +23,7 @@ public interface DepartmentService {
 
 	
 
-	List<Product> findProdcutInDepartment(int idDepartment);
+	
 
 	void allocateProductToDepartment(int idDepartment, int idProduct);
 

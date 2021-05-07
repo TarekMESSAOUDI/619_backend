@@ -69,7 +69,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PostMapping("/add-product")
 	@ResponseBody
 	public Product addProduct(@RequestBody Product p) {
@@ -80,7 +80,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/remove-product/{productId}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@DeleteMapping("/remove-product/{productId}")
 	@ResponseBody
 	public void removeProduct(@PathVariable("productId") int id) {
@@ -89,7 +89,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/update-Product
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PutMapping("/update-Product")
 	@ResponseBody
 	public Product updateProduct(@RequestBody Product p) {

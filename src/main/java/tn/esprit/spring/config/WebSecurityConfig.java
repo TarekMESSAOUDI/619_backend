@@ -65,6 +65,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-all-Stocks").permitAll()
 		.antMatchers("/servlet/add-department").permitAll()
 		.antMatchers("/servlet/remove-department/{department-id}").permitAll()
+		.antMatchers("/servlet/add-stock").permitAll()
+		.antMatchers("/servlet/remove-stock/{stock-id}").permitAll()
+		.antMatchers("/servlet/update-stock").permitAll()
+		.antMatchers("/servlet/alteProductToDepartment/{iddepartment}/{idproduct}").permitAll()
+		.antMatchers("/servlet/add-product").permitAll()
+		
+		.antMatchers("/servlet/findproductbyDepartment").permitAll()
+
+
+
 		
 		
 		.antMatchers("/servlet/authenticate").permitAll()

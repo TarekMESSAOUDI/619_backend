@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -89,9 +90,11 @@ ProductRepository productrepository;
 ////////////////////////////////////////////
 @Override
 public void allocateProductToDepartment(int idDepartment, int idProduct) {
+	List<Product> products=new ArrayList<Product>();
 Product product = productrepository.findById(idProduct).get();
 Department department = departmentrepository.findById(idDepartment).get();
 product.setDepartment(department);
+products.add(product);
 productrepository.save(product);
 
 }
@@ -130,14 +133,25 @@ fvr.save(Vvimage);
 
 }
 
+
+
+
+
+/*
 @Override
 public List<Product> findProdcutInDepartment(int idDepartment) {
-	// TODO Auto-generated method stub
-	return null;
+	return productrepository.findByIdDepartment(idDepartment);
 }
 
+*/
+/*
 
-
+@Override
+public List<Product> getAllProductName() {
+	
+	return productrepository.findAll();
+}
+*/
 
 
 }
