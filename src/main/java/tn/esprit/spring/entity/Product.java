@@ -129,7 +129,6 @@ public class Product implements Serializable {
 
 	
 
-
 	public Department getDepartment() {
 		return Department;
 	}
@@ -181,7 +180,7 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-		Department = department;
+  	Department = department;
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;

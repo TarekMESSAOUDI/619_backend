@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class BasketRestController {
 		}
 				
 		// http://localhost:9091/SpringMVC/servlet/delet-basket/{idBasket}
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@DeleteMapping("/delet-basket/{idBasket}")
 		@ResponseBody
 		public boolean deletBasketBasket(@PathVariable int idBasket) {
@@ -53,6 +55,7 @@ public class BasketRestController {
 			}
 				
 		// http://localhost:9091/SpringMVC/servlet/get-moy-AmountBasket
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/get-moy-AmountBasket")
 		@ResponseBody
 		public float getmoyAmountBasket(){
@@ -60,6 +63,7 @@ public class BasketRestController {
 		}
 				
 		// http://localhost:9091/SpringMVC/servlet/get-total-AmountBasket
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/get-total-AmountBasket")
 		@ResponseBody
 		public float gettotalAmountBasket(){
@@ -67,6 +71,7 @@ public class BasketRestController {
 		}
 
 		// http://localhost:9091/SpringMVC/servlet/get-max-AmountBasket
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/get-max-AmountBasket")
 		@ResponseBody
 		public float getmaxAmountBasket(){
@@ -74,6 +79,7 @@ public class BasketRestController {
 		}		
 				
 		// http://localhost:9091/SpringMVC/servlet/get-count-Basket
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/get-count-Basket")
 		@ResponseBody
 		public float getcountAmountBasket(){
@@ -81,6 +87,7 @@ public class BasketRestController {
 		}	
 				
 		// http://localhost:9091/SpringMVC/servlet/get-ecart-amountBasket
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/get-ecart-amountBasket")
 		@ResponseBody
 		public float getecartamountBasket(){

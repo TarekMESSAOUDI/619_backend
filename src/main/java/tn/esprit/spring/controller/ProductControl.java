@@ -18,9 +18,13 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,6 +100,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PostMapping("/add-product")
 	@ResponseBody
 	public Product addProduct(@RequestBody Product p) {
@@ -106,6 +111,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/remove-product/{productId}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@DeleteMapping("/remove-product/{productId}")
 	@ResponseBody
 	public void removeProduct(@PathVariable("productId") int id) {
@@ -113,7 +119,12 @@ public class ProductControl {
 	}
 	
 	
-	//http://localhost:9091/SpringMVC/servlet/update-Product
+
+	
+
+	//http://localhost:9090/SpringMVC/servlet/update-Product
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+
 	@PutMapping("/update-Product")
 	@ResponseBody
 	public Product updateProduct(@RequestBody Product p) {
@@ -122,6 +133,7 @@ public class ProductControl {
 	}
 	
 	//http://localhost:9090/SpringMVC/servlet/affect-image-to-product/{Idp}/{Idimage}
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 			@PutMapping("/affect-image-to-product/{Idp}/{Idimage}")
 			public void affecterProduitARayon(@PathVariable(value = "Idp") int Idp,
 					@PathVariable(value = "Idimage") int Idimage) {
@@ -130,6 +142,7 @@ public class ProductControl {
 			}
   
   //http://localhost:9090/SpringMVC/servlet/gain-product
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/gain-product")
 	@ResponseBody
 	public List<String> getgainproduct() {
@@ -138,6 +151,7 @@ public class ProductControl {
 	}
 	
 	//http://localhost:9090/SpringMVC/servlet/total-gain-product
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/total-gain-product")
 		@ResponseBody
 		public float gettotalgainproduct() {
@@ -145,6 +159,7 @@ public class ProductControl {
 		}
 		
 		//http://localhost:9090/SpringMVC/servlet/total-achat
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/total-achat")
 		@ResponseBody
 		public float getallcostproduct() {
@@ -152,6 +167,7 @@ public class ProductControl {
 		}
 		
 		//http://localhost:9090/SpringMVC/servlet/total-vente
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/total-vente")
 		@ResponseBody
 		public float getallbuyproduct() {
@@ -160,6 +176,7 @@ public class ProductControl {
 		
 		
 		//http://localhost:9090/SpringMVC/servlet/Most-Expensive
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping("/Most-Expensive")
 		@ResponseBody
 		public float MostExpensiveProduct() {

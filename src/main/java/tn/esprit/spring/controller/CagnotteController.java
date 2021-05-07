@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,10 @@ public class CagnotteController {
 	private ICagnotteService cagnotteService;
 	
 	// http://localhost:9091/SpringMVC/servlet/add-cagnotte
+
+
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+
 		@PostMapping("/add-cagnotte")
 		@ResponseBody
 		public Cagnotte addCagnotte(@RequestBody Cagnotte c) {
@@ -33,21 +41,31 @@ public class CagnotteController {
 		}
 	
 	// URL : http://localhost:9091/SpringMVC/servlet/getAllCagnotte
-	    @GetMapping(value = "getAllCagnotte")
+
+	    
 	  
+		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+		@GetMapping(value = "getAllCagnotte")
+
 	    public List<Cagnotte> getAllCagnotte(){
 		return cagnotteService.getAllCagnotte();
 		}
 	    
 	 // URL : http://localhost:9091/SpringMVC/servlet/delete-cagnotte
 		   @DeleteMapping(value = "delete-cagnotte/{idCagnotte}")
-		   
+
+		   @PreAuthorize("hasAuthority('ADMINISTRATOR')")
+
 			public void deleteCagnotte(@PathVariable("idCagnotte")int idCagnotte){
 			   cagnotteService.deleteCagnotte(idCagnotte);
 		   }
 		   
 		// http://localhost:9091/SpringMVC/servlet/modify-cagnotte
 			@PutMapping("/modify-cagnotte")
+
+
+			@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+
 			@ResponseBody
 			public Cagnotte modifyCagnotte(@RequestBody Cagnotte cagnotte) {
 			return cagnotteService.updateCagnotte(cagnotte);
@@ -55,7 +73,11 @@ public class CagnotteController {
 			
 		// URL : http://localhost:9091/SpringMVC/servlet/getCagnotte_by_ID
 			 @GetMapping(value = "getCagnotte_by_ID/{idCagnotte}")
+
 			   
+
+			 @PreAuthorize("hasAuthority('ADMINISTRATOR')")  
+
 			 public Optional<Cagnotte> getCagnotte_by_ID(@PathVariable("idCagnotte")int idCagnotte) {
 					return cagnotteService.getCagnotte_by_ID(idCagnotte);
 			}
