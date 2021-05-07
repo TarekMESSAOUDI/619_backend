@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import tn.esprit.spring.service.ZXingBarcode;
 
 
 @RestController
+@CrossOrigin
 public class BarcodeController {
 	
 	
@@ -36,6 +38,7 @@ public class BarcodeController {
         return mDynamsoftBarcode.decode(file.getOriginalFilename(), file.getInputStream());
     }
 
+  //http://localhost:9090/SpringMVC/servlet/zxing
     @PostMapping(value = "/zxing"
             , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
             , produces = MediaType.APPLICATION_JSON_VALUE)

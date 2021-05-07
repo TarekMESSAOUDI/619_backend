@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import tn.esprit.spring.repository.IBasketRepository;
 import tn.esprit.spring.service.BasketServiceImpl;
 import tn.esprit.spring.service.IBasketService;
 
+@CrossOrigin
 @RestController
 public class BasketRestController {
 	
@@ -83,6 +85,13 @@ public class BasketRestController {
 		@ResponseBody
 		public float getecartamountBasket(){
 		return br.getecartamountBasket();
-		}			
+		}	
+		
+		
+		//http://localhost:9091/SpringMVC/servlet/AffectProdToBasket
+		@PostMapping("/AffectProdToBasket/{idBasket}/{idProd}")
+		public void AffectProdToBasket(@PathVariable("idBasket")int idBasket,@PathVariable("idProd")int idProd) throws IOException{
+			bs.addProductTosBasket(idBasket, idProd);
+				}
 
 }

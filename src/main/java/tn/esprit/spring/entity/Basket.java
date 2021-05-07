@@ -12,10 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties
+
 @Entity
 @Table (name = "T_BASKET")
 public class Basket implements Serializable {
@@ -27,11 +28,13 @@ public class Basket implements Serializable {
 	private int productNumberBasket ;
 	private float amountBasket;
 	
+	
 	@JsonIgnore
 	@OneToOne (mappedBy="Basket")
 	User user;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="Basket")
+	@JsonIgnore
+	@OneToMany (mappedBy="Basket")
 	private Set<Product> Product;
 	
 	public int getIdBasket() {
@@ -58,9 +61,12 @@ public class Basket implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 	public Set<Product> getProduct() {
 		return Product;
 	}
+	
 	public void setProduct(Set<Product> product) {
 		Product = product;
 	}
