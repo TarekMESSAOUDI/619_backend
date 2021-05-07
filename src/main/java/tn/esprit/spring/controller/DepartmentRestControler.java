@@ -92,7 +92,7 @@ import tn.esprit.spring.service.DepartmentService;
 				
 				
 		// http://localhost:9090/SpringMVC/servlet/alteProductToDepartment/{idd}/{idp} 
-			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+			//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PutMapping("/alteProductToDepartment/{iddepartment}/{idproduct}")
 	public void AllocateProductToDepartment(@PathVariable(value = "iddepartment") int idDepartment,@PathVariable(value = "idproduct") int idProduct){
 					
@@ -113,12 +113,26 @@ departmentService.allocateFilesToDepartment(idDepartment, idImage);
 
 	
 			// http://localhost:9091/SpringMVC/servlet/retrieve-Department-By-Name/{Department-nameDepartment}
-			@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+			//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 								@GetMapping("/retrieve-Department-By-Name/{Department-nameDepartment}")
 								@ResponseBody
 								public List<Department> retrieveDepByName(@PathVariable("Department-nameDepartment") String nameDepartment) {
 								return departmentService.retrievedepartmentByName(nameDepartment);
 								}
+			
+			
+			
+			
+			
+			
+			
+			
+			// http://localhost:9091/SpringMVC/servlet/findproductbyDepartment/{idDep}
+			@GetMapping("/findproductbyDepartment")
+			@ResponseBody
+			public List<Product> findProductinDep(@PathVariable("idDep") int idDepartment) {
+				return pr.findByIdDepartment(idDepartment);
+			}
 	}
 
 	

@@ -37,6 +37,8 @@ public class Stock implements Serializable {
 	private Long capacityStock ;
 	private Long quantityStock ;
 	private float costStock ;
+	private Long maxStock;
+	private Long minStock;
 	
 	@JsonIgnore
 	@OneToMany( mappedBy="stock",cascade = CascadeType.ALL)
@@ -105,6 +107,31 @@ public class Stock implements Serializable {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
+	
+	
+	
+	
+	
+	
+
+	
+
+
+	public Long getMaxStock() {
+		return maxStock;
+	}
+
+	public void setMaxStock(Long maxStock) {
+		this.maxStock = maxStock;
+	}
+
+	public Long getMinStock() {
+		return minStock;
+	}
+
+	public void setMinStock(Long minStock) {
+		this.minStock = minStock;
+	}
 
 	public Stock() {
 		super();
@@ -158,6 +185,25 @@ public class Stock implements Serializable {
 		this.quantityStock = quantityStock;
 		this.costStock = costStock;
 	}
+
+	public Stock(Long idStock, String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock,
+			Long capacityStock, Long quantityStock, float costStock, Long maxStock, Long minStock,
+			List<Product> product) {
+		super();
+		this.idStock = idStock;
+		this.nameStock = nameStock;
+		TypeStock = typeStock;
+		this.validityStock = validityStock;
+		this.capacityStock = capacityStock;
+		this.quantityStock = quantityStock;
+		this.costStock = costStock;
+		this.maxStock = maxStock;
+		this.minStock = minStock;
+		this.product = product;
+	}
+	
+	
+	
 	
 	
 }
