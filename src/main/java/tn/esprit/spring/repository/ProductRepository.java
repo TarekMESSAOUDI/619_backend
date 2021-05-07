@@ -31,6 +31,16 @@ public List<Product> findAllByTitleProduct(String name);
 
 	@Query("Select MAX(p.buyingPriceProduct)FROM Product p")
 	public float MostExpensiveProduct();
+	
+	
+	@Query(value="SELECT product_title,product_descirption,name,data FROM t_product INNERJOIN  files ON t_product.id=files.id ", nativeQuery = true)
+	public List<Product> getProductswithImages();
+//	@Query("Select p.idProduct FROM Product p "
+//			+ "DISTINCT i.data FROM FileDB i "
+//			+ "join i.Product p "
+//			
+//			)
+//	public List<Object> getProductswithImages();
 
 	
 	
