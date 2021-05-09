@@ -298,5 +298,20 @@ public class ProductControl {
 				response.put("deleted", Boolean.TRUE);
 				return response;
 			}
-	
+		 
+		 
+		 
+		 
+		 
+		 ////////////////////////amin ////////////////////affect and get all prods by id dep/////////////////
+		 
+		 
+		// http://localhost:9091/SpringMVC/servlet/getprodsbyDEp/{id}
+		 /*
+		 @GetMapping(path="/getprodsbyDEp/{idde}")
+		 @ResponseBody
+		 List<Product> GetallprodbyidDep(@PathVariable("idde") int id){
+				return  productService.GetallprodbyidDep(id)	;	}
+				*/
+		 
 }

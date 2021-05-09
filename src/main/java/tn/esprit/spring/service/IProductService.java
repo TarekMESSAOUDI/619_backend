@@ -27,9 +27,15 @@ public interface IProductService {
 	public void addImageAndAddUnderCategorie (Product p,int idUnderCategorie,MultipartFile file);
 	
 	
+	
+	
+	
+	};
+	
+	
 
 	
 	
-}
+
 
 

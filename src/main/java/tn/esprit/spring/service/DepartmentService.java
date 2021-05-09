@@ -2,6 +2,8 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import tn.esprit.spring.entity.Department;
 import tn.esprit.spring.entity.Product;
 
@@ -30,6 +32,12 @@ public interface DepartmentService {
 	void allocateFilesToDepartment(int idDepartment, int idImage);
 
 	List<Department> retrievedepartmentByName(String nameDepartment);
+	
+	
+	
+	public List<Product> getProdsByIdDep( int idDepartment);
+
+
 
 	
 

@@ -93,7 +93,7 @@ public void allocateProductToDepartment(int idDepartment, int idProduct) {
 	List<Product> products=new ArrayList<Product>();
 Product product = productrepository.findById(idProduct).get();
 Department department = departmentrepository.findById(idDepartment).get();
-product.setDepartment(department);
+product.setIdDepartment(department);
 products.add(product);
 productrepository.save(product);
 
@@ -133,17 +133,19 @@ fvr.save(Vvimage);
 
 }
 
-
-
-
-
-/*
 @Override
-public List<Product> findProdcutInDepartment(int idDepartment) {
-	return productrepository.findByIdDepartment(idDepartment);
+public List<Product> getProdsByIdDep(int idDepartment) {
+	// TODO Auto-generated method stub
+	return departmentrepository.Getproductsbyiddep(idDepartment);
 }
 
-*/
+
+
+
+
+
+
+
 /*
 
 @Override
