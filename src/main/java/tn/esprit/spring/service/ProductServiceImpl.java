@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import tn.esprit.spring.repository.DepartmentRepository;
 import tn.esprit.spring.repository.FileRepository;
 import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.UnderCategoryRepository;
@@ -34,6 +35,9 @@ public class ProductServiceImpl implements IProductService {
 	UnderCategoryRepository UCR;
 	@Autowired
 	FileStrorageService FileStorageService;
+	
+	@Autowired
+	DepartmentRepository dr;
 	
 	
 	private static final Logger L = LogManager.getLogger(IProductService.class);
@@ -148,5 +152,14 @@ public class ProductServiceImpl implements IProductService {
 //		filerepository.save(image);
 	}
 
-	}
+	
+	
+		/*
+	
+	@Override
+	public List<Product> GetallprodbyidDep(int id) {
+		
+	
+*/
+}
 

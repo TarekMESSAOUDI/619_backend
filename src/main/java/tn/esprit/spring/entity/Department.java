@@ -33,13 +33,23 @@ public class Department implements Serializable {
 	
 	private int maxamountDep;
 	private int AmountDep;
+	private String fileName;
 	
 	@ManyToOne
 	User user ;
+	
+	
+	
+	
 		
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="Department")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="idDepartment")
 	@JsonIgnore
 	private Set<Product> Product;
+	
+	
+	
+	
+	
 
 	public int getIdDepartment() {
 		return idDepartment;
@@ -93,6 +103,16 @@ public class Department implements Serializable {
 	
 	
 	
+
+	
+
+	public String getFileName() {
+	return fileName;
+}
+
+public void setFileName(String fileName) {
+	this.fileName = fileName;
+}
 
 	public int getMaxamountDep() {
 		return maxamountDep;
@@ -164,15 +184,24 @@ public class Department implements Serializable {
 		Product = product;
 	}
 
-	@Override
-	public String toString() {
-		return "Department [idDepartment=" + idDepartment + ", nameDepartment=" + nameDepartment + ", typeDepartment="
-				+ typeDepartment + ", capacityDepartment=" + capacityDepartment + ", maxamountDep=" + maxamountDep
-				+ ", AmountDep=" + AmountDep + "]";
+	public Department(String nameDepartment, TypeDepartment typeDepartment, int capacityDepartment, int maxamountDep,
+			int amountDep, String fileName, User user, Set<tn.esprit.spring.entity.Product> product) {
+		super();
+		this.nameDepartment = nameDepartment;
+		this.typeDepartment = typeDepartment;
+		this.capacityDepartment = capacityDepartment;
+		this.maxamountDep = maxamountDep;
+		AmountDep = amountDep;
+		this.fileName = fileName;
+		this.user = user;
+		Product = product;
 	}
-		
 	
 	
+	
+	
+	
+
 	
 	
 		
