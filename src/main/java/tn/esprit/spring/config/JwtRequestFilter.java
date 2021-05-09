@@ -21,6 +21,8 @@ import tn.esprit.spring.security.JwtUserDetailsService;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
+	
+	public static final String CSRF_COOKIE_NAME ="XSRF-TOKEN";
 
 		@Autowired
 		private JwtUserDetailsService jwtUserDetailsService;

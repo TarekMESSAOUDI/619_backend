@@ -13,6 +13,8 @@ import tn.esprit.spring.exception.UserNotFoundException;
 public interface IUserService {
 	
 	ResponseEntity<?> addUser(User user);
+	
+	ResponseEntity<?> ajouterUser(User user);
 
 	User updateUser(User user) throws Exception;
 
