@@ -403,15 +403,15 @@ public class User implements Serializable {
 		this.avilaibility = avilaibility;
 		this.zone = zone;
 		this.role = role;
-		Order = order;
-		Basket = basket;
-		Comment = comment;
-		ImageUser1 = imageUser1;
-		Claim = claim;
-		CharityEvent = charityEvent;
-		Publicity = publicity;
-		Delivery = delivery;
-		Department = department;
+//		Order = order;
+//		Basket = basket;
+//		Comment = comment;
+//		ImageUser1 = imageUser1;
+//		Claim = claim;
+//		CharityEvent = charityEvent;
+//		Publicity = publicity;
+//		Delivery = delivery;
+//		Department = department;
 	}
 
 	public User(String username, String lastNameUser, String cinUser, String password, String confirmPasswordUser,
@@ -449,15 +449,15 @@ public class User implements Serializable {
 		this.avilaibility = avilaibility;
 		this.zone = zone;
 		this.role = role;
-		Order = order;
-		Basket = basket;
-		Comment = comment;
-		ImageUser1 = imageUser1;
-		Claim = claim;
-		CharityEvent = charityEvent;
-		Publicity = publicity;
-		Delivery = delivery;
-		Department = department;
+//		Order = order;
+//		Basket = basket;
+//		Comment = comment;
+//		ImageUser1 = imageUser1;
+//		Claim = claim;
+//		CharityEvent = charityEvent;
+//		Publicity = publicity;
+//		Delivery = delivery;
+//		Department = department;
 	}
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
@@ -559,15 +559,15 @@ public class User implements Serializable {
 		this.isPrivate = isPrivate;
 		this.pointnumber = pointnumber;
 		this.role = role;
-		Order = order;
-		Basket = basket;
-		Comment = comment;
-		ImageUser1 = imageUser1;
-		Claim = claim;
-		CharityEvent = charityEvent;
-		Publicity = publicity;
-		Delivery = delivery;
-		Department = department;
+//		Order = order;
+//		Basket = basket;
+//		Comment = comment;
+//		ImageUser1 = imageUser1;
+//		Claim = claim;
+//		CharityEvent = charityEvent;
+//		Publicity = publicity;
+//		Delivery = delivery;
+//		Department = department;
 	}
 
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
@@ -603,15 +603,15 @@ public class User implements Serializable {
 		this.isPrivate = isPrivate;
 		this.salaire = salaire;
 		this.role = role;
-		Order = order;
-		Basket = basket;
-		Comment = comment;
-		ImageUser1 = imageUser1;
-		Claim = claim;
-		CharityEvent = charityEvent;
-		Publicity = publicity;
-		Delivery = delivery;
-		Department = department;
+//		Order = order;
+//		Basket = basket;
+//		Comment = comment;
+//		ImageUser1 = imageUser1;
+//		Claim = claim;
+//		CharityEvent = charityEvent;
+//		Publicity = publicity;
+//		Delivery = delivery;
+//		Department = department;
 	}
 	
 	

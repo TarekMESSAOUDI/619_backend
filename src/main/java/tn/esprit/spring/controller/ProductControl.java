@@ -104,6 +104,7 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
+
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PostMapping("/add-product/{iduc}/{idDep}")
 	@ResponseBody
@@ -127,9 +128,11 @@ public class ProductControl {
 	
 
 	//http://localhost:9090/SpringMVC/servlet/update-Product
+
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 
 	@PutMapping("/update-Product/{id}")
+  @PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@ResponseBody
 	public Product updateProduct(@PathVariable(value = "id") int id,@RequestBody Product p) {
 	return productService.updateProduct(id, p);  
@@ -305,6 +308,4 @@ public class ProductControl {
 			}
 		 
 		 
-		 
-	
 }

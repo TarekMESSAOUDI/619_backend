@@ -38,7 +38,7 @@ public class Product implements Serializable {
 	
 	@JsonIgnore
 	@ManyToOne
-	Department Department;
+	Department idDepartment;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -55,6 +55,21 @@ public class Product implements Serializable {
 	@OneToOne
 	private FileDB FileDB;
 	
+	
+	
+	
+	
+	
+	
+	
+	public Department getIdDepartment() {
+		return idDepartment;
+	}
+
+	public void setIdDepartment(Department idDepartment) {
+		this.idDepartment = idDepartment;
+	}
+
 	public int getIdProduct() {
 		return idProduct;
 	}
@@ -129,13 +144,6 @@ public class Product implements Serializable {
 
 	
 
-	public Department getDepartment() {
-		return Department;
-	}
-
-	public void setDepartment(Department department) {
-		Department = department;
-	}
 
 	public Basket getBasket() {
 		return Basket;
@@ -167,10 +175,27 @@ public class Product implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
-			int maxQuantityProduc, tn.esprit.spring.entity.Department department,
-			tn.esprit.spring.entity.Basket basket, tn.esprit.spring.entity.UnderCategory underCategory, Stock stock) {
+			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			int maxQuantityProduct, String fileName, Department idDepartment, tn.esprit.spring.entity.Basket basket,
+			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock, tn.esprit.spring.entity.FileDB fileDB) {
+
 		super();
 		this.idProduct = idProduct;
 		this.titleProduct = titleProduct;
@@ -181,10 +206,12 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-  	Department = department;
+		this.fileName = fileName;
+		this.idDepartment = idDepartment;
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;
+		FileDB = fileDB;
 	}
 
 	public FileDB getFileDB() {
@@ -201,6 +228,7 @@ public class Product implements Serializable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
 
 	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
 			String barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct, 
@@ -220,6 +248,7 @@ public class Product implements Serializable {
 		UnderCategory = underCategory;
 		this.stock = stock;
 	}
+
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
 			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,

@@ -40,6 +40,7 @@ public class ProductServiceImpl implements IProductService {
 	UnderCategoryRepository ucr;
 	@Autowired
 	DepartmentRepository dr;
+
 	
 	private static final Logger L = LogManager.getLogger(IProductService.class);
 	
@@ -160,5 +161,14 @@ public class ProductServiceImpl implements IProductService {
 //		filerepository.save(image);
 	}
 
-	}
+	
+	
+		/*
+	
+	@Override
+	public List<Product> GetallprodbyidDep(int id) {
+		
+	
+*/
+}
 

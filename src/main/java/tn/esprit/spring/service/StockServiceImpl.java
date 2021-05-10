@@ -104,20 +104,8 @@ public Stock updateStock(Stock s) {
  @Override
 	public Stock StockUpadate(Stock st) {
 		
-		Stock existingStk=stockrepository.findById(st.getIdStock()).orElse(null);
 		
-		stockrepository.findById(st.getIdStock());
-		existingStk.setNameStock(st.getNameStock());
-		existingStk.setTypeStock(st.getTypeStock());
-		existingStk.setCapacityStock(st.getCapacityStock());
-		existingStk.setQuantityStock(st.getQuantityStock());
-		;
-
-		
-		
-		
-		
-		return 	stockrepository.save(existingStk);
+		return 	stockrepository.save(st);
 	}
 
  
