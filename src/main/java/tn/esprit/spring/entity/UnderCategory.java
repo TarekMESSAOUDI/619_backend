@@ -13,9 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties
+
+
 @Entity
 @Table (name = "T_UNDER_CATEGORY")
 public class UnderCategory implements Serializable {
@@ -32,7 +32,7 @@ public class UnderCategory implements Serializable {
 	
 	@JsonIgnore
 	@ManyToOne
-	Category Category;
+	private Category Category;
 
 	public int getIdUnderCategory() {
 		return idUnderCategory;
@@ -49,14 +49,18 @@ public class UnderCategory implements Serializable {
 	public void setNameUnderCategory(String nameUnderCategory) {
 		this.nameUnderCategory = nameUnderCategory;
 	}
-
+	
+	@JsonIgnore
 	public Set<Product> getProduct() {
 		return Product;
 	}
-
+	
+	@JsonIgnore
 	public void setProduct(Set<Product> product) {
 		Product = product;
 	}
+
+
 
 	public Category getCategory() {
 		return Category;

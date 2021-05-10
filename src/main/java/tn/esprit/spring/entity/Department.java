@@ -35,6 +35,7 @@ public class Department implements Serializable {
 	User user ;
 		
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="Department")
+	
 	@JsonIgnore
 	private Set<Product> Product;
 
@@ -78,10 +79,12 @@ public class Department implements Serializable {
 		this.user = user;
 	}
 
+	@JsonIgnore
 	public Set<Product> getProduct() {
 		return Product;
 	}
 
+	@JsonIgnore
 	public void setProduct(Set<Product> product) {
 		Product = product;
 	}

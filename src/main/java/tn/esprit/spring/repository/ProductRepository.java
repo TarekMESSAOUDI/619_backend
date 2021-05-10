@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 
 public interface ProductRepository extends CrudRepository<Product, Integer>  {
@@ -49,5 +50,12 @@ public List<Product> findAllByTitleProduct(String name);
 //			+"WHERE p.titleProduct =: titleProduct AND u.idUnderCategory =: idUnderCategory")
 //    public List<Product>  GetproductByidUcandTitle(int iduc,String name);
 
+	@Query(value = "SELECT * FROM t_product t WHERE under_category_id_undercategory=?1", nativeQuery = true)
+	public List<Product> findAllProductByIdUnderCategory(@Param("id")int id);
+	
+	
+	
 }
+
+
 

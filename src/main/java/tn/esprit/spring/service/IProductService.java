@@ -15,8 +15,8 @@ public interface IProductService {
 	
 	public List<Product> showAll();
 	public void deleteProduct(int id);
-	public Product updateProduct(Product p);
-	public Product addProduct(Product p);
+	public Product updateProduct(int id,Product p);
+	public Product addProduct(Product p,int id,int idDepartmet);
 	public Product GetById(int id);
 	public Product GetByName(String nameProduct);
 	public List<Product> GetAllByName(String nameProduct);

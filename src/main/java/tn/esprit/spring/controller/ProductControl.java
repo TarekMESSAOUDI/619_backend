@@ -44,7 +44,9 @@ import ch.qos.logback.core.Context;
 import io.netty.handler.ipfilter.IpSubnetFilter;
 import tn.esprit.spring.ResourceNotFoundException.ResourceNotFoundException;
 import tn.esprit.spring.entity.Product;
+import tn.esprit.spring.entity.UnderCategory;
 import tn.esprit.spring.repository.ProductRepository;
+import tn.esprit.spring.repository.UnderCategoryRepository;
 import tn.esprit.spring.response.Response;
 
 
@@ -60,6 +62,8 @@ public class ProductControl {
 	ProductRepository PR;
 	@Autowired
 	ServletContext context;
+	@Autowired
+	UnderCategoryRepository ucr;
   
   
   @Autowired
@@ -100,18 +104,18 @@ public class ProductControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
-	@PostMapping("/add-product")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+	@PostMapping("/add-product/{iduc}/{idDep}")
 	@ResponseBody
-	public Product addProduct(@RequestBody Product p) {
-	Product prod = productService.addProduct(p);
+	public Product addProduct(@RequestBody Product p,@PathVariable("iduc")int iduc,@PathVariable("idDep")int idDep) {
+	Product prod = productService.addProduct(p,iduc,idDep);
 	return prod;
 	}
 	
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/remove-product/{productId}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@DeleteMapping("/remove-product/{productId}")
 	@ResponseBody
 	public void removeProduct(@PathVariable("productId") int id) {
@@ -123,17 +127,17 @@ public class ProductControl {
 	
 
 	//http://localhost:9090/SpringMVC/servlet/update-Product
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 
-	@PutMapping("/update-Product")
+	@PutMapping("/update-Product/{id}")
 	@ResponseBody
-	public Product updateProduct(@RequestBody Product p) {
-	return productService.updateProduct( p);  
+	public Product updateProduct(@PathVariable(value = "id") int id,@RequestBody Product p) {
+	return productService.updateProduct(id, p);  
 			
 	}
 	
 	//http://localhost:9090/SpringMVC/servlet/affect-image-to-product/{Idp}/{Idimage}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 			@PutMapping("/affect-image-to-product/{Idp}/{Idimage}")
 			public void affecterProduitARayon(@PathVariable(value = "Idp") int Idp,
 					@PathVariable(value = "Idimage") int Idimage) {
@@ -249,11 +253,14 @@ public class ProductControl {
 		
 		
 		 @PostMapping("/Productss")
-		 public ResponseEntity<Response> createProduct (@RequestParam("file") MultipartFile file,
+		 public ResponseEntity<Response> createProduct (@RequestParam("file") MultipartFile file,int id,
 				 @RequestParam("article") String product) throws JsonParseException , JsonMappingException , Exception
 		 {
 			 System.out.println("Ok .............");
 	        Product prod = new ObjectMapper().readValue(product, Product.class);
+	        UnderCategory uc=ucr.findById(id).get();
+	        prod.setUnderCategory(uc);
+	        
 	        boolean isExit = new File(context.getRealPath("/Images/")).exists();
 	        if (!isExit)
 	        {
@@ -296,5 +303,8 @@ public class ProductControl {
 				response.put("deleted", Boolean.TRUE);
 				return response;
 			}
+		 
+		 
+		 
 	
 }

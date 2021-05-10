@@ -40,9 +40,7 @@ public class BarcodeController {
     }
 
 
-    @PostMapping(value = "/zxing"
-            , consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-            , produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/zxing")
     public BarcodeResponse getZXing(@RequestPart MultipartFile file) throws Exception {
         return mZXingBarcode.decode(file.getOriginalFilename(), file.getInputStream());
 

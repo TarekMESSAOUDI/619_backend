@@ -29,7 +29,7 @@ public class DynamsoftBarcode {
     
     public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
 
-    public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
+    
 
 
         try {

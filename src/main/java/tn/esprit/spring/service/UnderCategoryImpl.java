@@ -1,13 +1,16 @@
 
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entity.Category;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.UnderCategory;
+import tn.esprit.spring.repository.CategoryRepository;
 import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.UnderCategoryRepository;
 
@@ -19,10 +22,16 @@ public class UnderCategoryImpl implements IUnderCategory {
 	UnderCategoryRepository UCR;
 	@Autowired
 	ProductRepository PR;
+	@Autowired
+	CategoryRepository cr;
+	
 	
 	@Override
-	public UnderCategory addUndercategory(UnderCategory uc) {
-		return UCR.save(uc);
+	public UnderCategory addUndercategory(UnderCategory uc,int idcategory) {
+		Category cat=cr.findByIdCategory(idcategory);
+		uc.setCategory(cat);
+		 UCR.save(uc);
+		 return uc;
 	}
 
 	@Override
@@ -59,6 +68,11 @@ public class UnderCategoryImpl implements IUnderCategory {
 	public UnderCategory findById(int idUnderCategory) {
 		
 		return  UCR.findById(idUnderCategory).get();
+	}
+
+	@Override
+	public List<Product> getByIdUnder(int idUnderCat) {
+		return UCR.GetproductsbyidUnderCat(idUnderCat);
 	}
 
 }
