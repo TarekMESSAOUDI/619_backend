@@ -13,9 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="T_PRODUCT")
@@ -29,7 +29,7 @@ public class Product implements Serializable {
 	private String descriptionProduct ;
 	private int quantityProduct ;
 	private float priceProduct ;
-	private int barcodeProduct ;
+	private String barcodeProduct ;
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
@@ -46,7 +46,7 @@ public class Product implements Serializable {
 	
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	UnderCategory UnderCategory;
 
 	@ManyToOne
@@ -110,11 +110,11 @@ public class Product implements Serializable {
 		this.priceProduct = priceProduct;
 	}
 
-	public int getBarcodeProduct() {
+	public String getBarcodeProduct() {
 		return barcodeProduct;
 	}
 
-	public void setBarcodeProduct(int barcodeProduct) {
+	public void setBarcodeProduct(String barcodeProduct) {
 		this.barcodeProduct = barcodeProduct;
 	}
 
@@ -153,10 +153,11 @@ public class Product implements Serializable {
 		Basket = basket;
 	}
 
+	
 	public UnderCategory getUnderCategory() {
 		return UnderCategory;
 	}
-
+	
 	public void setUnderCategory(UnderCategory underCategory) {
 		UnderCategory = underCategory;
 	}
@@ -194,6 +195,7 @@ public class Product implements Serializable {
 			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct, String fileName, Department idDepartment, tn.esprit.spring.entity.Basket basket,
 			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock, tn.esprit.spring.entity.FileDB fileDB) {
+
 		super();
 		this.idProduct = idProduct;
 		this.titleProduct = titleProduct;
@@ -227,10 +229,29 @@ public class Product implements Serializable {
 		this.fileName = fileName;
 	}
 
-	
+
+	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
+			String barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct, 
+			tn.esprit.spring.entity.Department department, tn.esprit.spring.entity.Basket basket,
+			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock) {
+		super();
+		this.titleProduct = titleProduct;
+		this.descriptionProduct = descriptionProduct;
+		this.quantityProduct = quantityProduct;
+		this.priceProduct = priceProduct;
+		this.barcodeProduct = barcodeProduct;
+		this.weightProduct = weightProduct;
+		this.buyingPriceProduct = buyingPriceProduct;
+		this.maxQuantityProduct = maxQuantityProduct;
+		Department = department;
+		Basket = basket;
+		UnderCategory = underCategory;
+		this.stock = stock;
+	}
+
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct) {
 		super();
 		this.idProduct = idProduct;
@@ -245,7 +266,7 @@ public class Product implements Serializable {
 	}
 
 	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
-			int barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct) {
+			String barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct) {
 		super();
 		this.titleProduct = titleProduct;
 		this.descriptionProduct = descriptionProduct;

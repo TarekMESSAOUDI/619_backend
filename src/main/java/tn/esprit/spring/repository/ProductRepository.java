@@ -14,6 +14,7 @@ import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
+
 public interface ProductRepository extends CrudRepository<Product, Integer>  {
 	
 public Product findByTitleProduct(String name);
@@ -97,9 +98,14 @@ public List<Product> findAllByTitleProduct(String name);
 	
 	
 
-	
+
+	@Query(value = "SELECT * FROM t_product t WHERE under_category_id_undercategory=?1", nativeQuery = true)
+	public List<Product> findAllProductByIdUnderCategory(@Param("id")int id);
+
 	
 	
 	
 }
+
+
 

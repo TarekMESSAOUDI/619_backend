@@ -30,7 +30,7 @@ public class CategoryRestController {
 	ICategoryService CS;
 	
 	//  http://localhost:9090/SpringMVC/servlet/add-category
-		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@PostMapping("/add-category")
 		@ResponseBody
 		public Category addProduct(@RequestBody Category c) {
@@ -40,7 +40,7 @@ public class CategoryRestController {
 		
 		
 		//   http://localhost:9090/SpringMVC/servlet/remove-category/{categorytId}
-		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@DeleteMapping("/remove-category/{categorytId}")
 		@ResponseBody
 		public void removeCategory(@PathVariable("categorytId") int catId) {
@@ -68,7 +68,7 @@ public class CategoryRestController {
 		}
 		
 		//http://localhost:9090/SpringMVC/servlet/affect-undercategory-to-category/{Iduc}/{Idc}
-		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
+//		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 		@PutMapping("affect-undercategory-to-category/{Iduc}/{Idc}")
 		public void affecterProduitARayon(@PathVariable(value = "Iduc") int Iduc,
 				@PathVariable(value = "Idc") int idCategory) {

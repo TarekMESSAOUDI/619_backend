@@ -18,6 +18,7 @@ import tn.esprit.spring.repository.DepartmentRepository;
 import tn.esprit.spring.repository.FileRepository;
 import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.UnderCategoryRepository;
+import tn.esprit.spring.entity.Department;
 import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.UnderCategory;
@@ -35,10 +36,11 @@ public class ProductServiceImpl implements IProductService {
 	UnderCategoryRepository UCR;
 	@Autowired
 	FileStrorageService FileStorageService;
-	
+	@Autowired
+	UnderCategoryRepository ucr;
 	@Autowired
 	DepartmentRepository dr;
-	
+
 	
 	private static final Logger L = LogManager.getLogger(IProductService.class);
 	
@@ -53,7 +55,14 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override  
-	public Product addProduct(Product p) {
+	public Product addProduct(Product p,int id,int idDepratment) {
+		
+		UnderCategory undercat=ucr.findById(id).get();
+		p.setUnderCategory(undercat);
+		
+		Department dep=dr.findById(idDepratment).get();
+		p.setDepartment(dep);
+		
 		productRepository.save(p);
 		return p;
 	}
@@ -95,9 +104,9 @@ public class ProductServiceImpl implements IProductService {
 
 
 	@Override
-	public Product updateProduct(Product p) {
+	public Product updateProduct(int id,Product p) {
 		
-		Product existingProduct=productRepository.findById(p.getIdProduct()).orElse(null);
+		Product existingProduct=productRepository.findById(id).get();
 		
 		
 	
@@ -110,7 +119,7 @@ public class ProductServiceImpl implements IProductService {
 		existingProduct.setBuyingPriceProduct(p.getBuyingPriceProduct());
 		existingProduct.setMaxQuantityProduct(p.getMaxQuantityProduct());
 	
-		return 	productRepository.save(existingProduct);
+		return productRepository.save(existingProduct);
 	
 	}
 
