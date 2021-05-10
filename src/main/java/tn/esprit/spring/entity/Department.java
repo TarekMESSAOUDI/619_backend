@@ -42,7 +42,9 @@ public class Department implements Serializable {
 	
 	
 		
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="idDepartment")
+
 	@JsonIgnore
 	private Set<Product> Product;
 	
@@ -90,20 +92,20 @@ public class Department implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
+
+
+
 @JsonIgnore
 	public Set<Product> getProduct() {
 		return Product;
 	}
 @JsonIgnore
+
 	public void setProduct(Set<Product> product) {
 		Product = product;
 	}
-	
-	
-	
-	
-	
-
 	
 
 	public String getFileName() {

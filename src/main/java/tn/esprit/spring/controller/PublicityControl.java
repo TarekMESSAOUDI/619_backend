@@ -85,7 +85,7 @@ public class PublicityControl {
 	}
 	
 	//http://localhost:9090/SpringMVC/servlet/add-publicity
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/add-publicity")
 	@ResponseBody
 	public Publicity addPublicity(@RequestBody Publicity pub) {
@@ -103,11 +103,11 @@ public class PublicityControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/update-publicity
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
-	@PutMapping("/update-publicity")
+//	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PutMapping("/update-publicity/{Idpublicity}")
 	@ResponseBody
-	public Publicity updatepublicity(@RequestBody Publicity pub) {
-	return PS.updatePublicity(pub);
+	public Publicity updatepublicity(@PathVariable(value ="Idpublicity") int Idpublicity,@RequestBody Publicity pub) {
+	return PS.updatePublicity(Idpublicity,pub);
 			
 	}
 	

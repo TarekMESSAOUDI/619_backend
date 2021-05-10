@@ -54,8 +54,8 @@ public class PublicityServiceImpl implements IPublicityService {
 	
 
 	@Override  //done
-	public Publicity updatePublicity(Publicity p) {
-		Publicity existingPub=publicityRepository.findById(p.getIdPublicity()).orElse(null);
+	public Publicity updatePublicity(int id,Publicity p) {
+		Publicity existingPub=publicityRepository.findById(id).get();
 		existingPub.setNamePublicity(p.getNamePublicity());
 		existingPub.setStartDatePublicity(p.getStartDatePublicity());
 		existingPub.setTargetPublicity(p.getTargetPublicity());
