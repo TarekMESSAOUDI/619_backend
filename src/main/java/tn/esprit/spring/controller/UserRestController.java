@@ -21,7 +21,11 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IUserRepository;
 import tn.esprit.spring.service.IUserService;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
+
 @CrossOrigin(origins="*")
+
 @RestController
 public class UserRestController {
 
@@ -32,6 +36,7 @@ public class UserRestController {
 	IUserService us;
 	
 	// http://localhost:9091/SpringMVC/servlet/add-user
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/add-user")
 	@ResponseBody
 	public ResponseEntity<?> addUser(@RequestBody User user) {

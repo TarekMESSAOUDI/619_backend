@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,7 +36,20 @@ public class Product implements Serializable {
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
+
+	@NotBlank
+	@Column(unique = true)
+	private String nombre;
+	private String description;
+	@NotNull
+	private int prix;
+	private String imageURL;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
+	private Set<Order> order;
+
 	private String fileName;
+
 
 	
 	@JsonIgnore
@@ -168,6 +184,40 @@ public class Product implements Serializable {
 
 	public void setStock(Stock stock) {
 		this.stock = stock;
+	}
+	
+	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPrix() {
+		return prix;
+	}
+
+	public void setPrix(int prix) {
+		this.prix = prix;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public Product() {

@@ -35,7 +35,6 @@ public class Order implements Serializable {
 	private int productNumberOrder ;
 	private String stateOrder ;
 	private float amountOrder ;
-	private double prix;
 	@Enumerated(EnumType.STRING)
 	private PaymentType paymentType;
 	
@@ -89,13 +88,7 @@ public class Order implements Serializable {
 		this.amountOrder = amountOrder;
 	}
 
-	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
+	
 
 	public PaymentType getPaymentType() {
 		return paymentType;
@@ -137,7 +130,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
@@ -166,7 +159,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
@@ -181,7 +174,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 	}
 
@@ -200,7 +193,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+	
 		this.paymentType = paymentType;
 	}
 

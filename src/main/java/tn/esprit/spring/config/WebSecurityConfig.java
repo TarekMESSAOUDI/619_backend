@@ -178,12 +178,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
 		.antMatchers("/servlet/users-names").permitAll()
 		.antMatchers("/servlet/sending").permitAll()
+
+		//.antMatchers("/servlet/getAllOrder").permitAll()
+		.antMatchers("/servlet/delete-order/{idOrder}").permitAll()
+		.antMatchers("/servlet/add-order").permitAll()
+		.antMatchers("/servlet/modify-order").permitAll()
+		.antMatchers("/servlet/showPDF/{idOrder}").permitAll()
+		.antMatchers("/servlet/articulo/lista").permitAll()
+		.antMatchers("/servlet/articulo/detalle/{id}").permitAll()
+		.antMatchers("/servlet/stripe/paymentintent").permitAll()
+		.antMatchers("/servlet/stripe/confirm/{id}").permitAll()
+		.antMatchers("/servlet/stripe/cancel/{id}").permitAll()
+		.antMatchers("/servlet/getOrder_by_ID/{idOrder}").permitAll()
+		.antMatchers("/servlet/getAllCagnotte").permitAll()
+		.antMatchers("/servlet/delete-cagnotte/{idCagnotte}").permitAll()
+		.antMatchers("/servlet/add-cagnotte").permitAll()
+		.antMatchers("/servlet/update-order/{idOrder}").permitAll()
+		.antMatchers("/servlet/order/{idOrder}").permitAll()
+		.antMatchers("/servlet/show-all-products").permitAll()
+		.antMatchers("/servlet/show-all-categories").permitAll()
+		
+		
+	
+		
+		
+	
+
 		
 		
 		
 		
 		
 		
+
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to
