@@ -114,13 +114,14 @@ public class Claim implements Serializable {
 		this.dateClaim = dateClaim;
 	}
 
-	public Claim(String titleClaim, String descriptionClaim, StateClaim_Order stateClaim, Date dateClaim) {
+	public Claim(Date dateClaim, String descriptionClaim, StateClaim_Order stateClaim,String titleClaim  ) {
 		super();
-		this.titleClaim = titleClaim;
+		this.dateClaim = dateClaim;
 		this.descriptionClaim = descriptionClaim;
 		this.stateClaim = stateClaim;
-		this.dateClaim = dateClaim;
+		this.titleClaim = titleClaim;
 	}
+
 
 	
 }
