@@ -21,7 +21,11 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IUserRepository;
 import tn.esprit.spring.service.IUserService;
 
+
 @CrossOrigin(origins = "http://localhost:4200")
+
+@CrossOrigin(origins="*")
+
 @RestController
 public class UserRestController {
 
@@ -39,12 +43,21 @@ public class UserRestController {
 	ResponseEntity<?> u = us.addUser(user);
 	return u;
 	}
+	
+	// http://localhost:9091/SpringMVC/servlet/add-user
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PostMapping("/ajouter-user")
+	@ResponseBody
+	public ResponseEntity<?> ajouterUser(@RequestBody User user) {
+	ResponseEntity<?> u = us.ajouterUser(user);
+	return u;
+	}
 
 	// http://localhost:9091/SpringMVC/servlet/delete-user/{user-id}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
-	@DeleteMapping("/delete-user/{user-id}")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@DeleteMapping("/delete-user/{idUser}")
 	@ResponseBody
-	public void deleteUser(@PathVariable("user-id") int userId) {
+	public void deleteUser(@PathVariable("idUser") int userId) {
 	us.deleteUser(userId);
 	}
 	
@@ -55,8 +68,22 @@ public class UserRestController {
 	return us.updateUser(user);
 	}
 	
+	
+	// http://localhost:9091/SpringMVC/servlet/update-user
+//	@PutMapping("/update-user/{id}")
+//	//@ResponseBody
+//	public ResponseEntity<User> updateUser(@PathVariable("id") int idUser,@RequestBody User user) throws Exception {
+//	java.util.Optional<User> userToUpdate = ur.findById(idUser);
+//	if (userToUpdate.isPresent()){
+//		userToUpdate.get().setUsername(user.getUsername());
+//		userToUpdate.get().setLastNameUser(user.getLastNameUser());
+//		userToUpdate.get().setEmailUser(user.getEmailUser());
+//	}
+//	return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+//	}
+	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-all-user
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@GetMapping("/retrieve-all-user")
 	@ResponseBody
 	public List<User> getUser() {

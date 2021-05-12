@@ -58,9 +58,77 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 		// dont authenticate this particular request
+		
+		
 		.authorizeRequests()
+		
+		.antMatchers("/servlet/retrieve-all-Stocks").permitAll()
+		.antMatchers("/servlet/add-department").permitAll()
+		.antMatchers("/servlet/remove-department/{department-id}").permitAll()
+		.antMatchers("/servlet/add-stock").permitAll()
+		.antMatchers("/servlet/remove-stock/{stock-id}").permitAll()
+		.antMatchers("/servlet/update-stock").permitAll()
+		.antMatchers("/servlet/alteProductToDepartment/{iddepartment}/{idproduct}").permitAll()
+		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
+		
+		.antMatchers("/servlet/GETALLPRODUCTS").permitAll()
+		
+		.antMatchers("/servlet/GETALLS").permitAll()
+		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
+		.antMatchers("/servlet/prod/{id}").permitAll()
+		
+		.antMatchers("/servlet/Productss").permitAll()
+		.antMatchers("/servlet/zxing").permitAll()
+		.antMatchers("/servlet/department/{id}").permitAll()
+
+
+		
+	
+
+		
+		
+	
+		
+		
+		
+		
+		
+		
+	
+		
+		.antMatchers("/servlet/Departmentss").permitAll()
+		
+		.antMatchers("/servlet/PostPubImage").permitAll()
+		
+		.antMatchers("/servlet/depart/{id}").permitAll()
+		.antMatchers("servlet/department/{id}").permitAll()
+		
+		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+		
+		
 		.antMatchers("/servlet/authenticate").permitAll()
+
 		.antMatchers("/servlet/add-user").permitAll()
+		
+		.antMatchers("/servlet/ajouter-user").permitAll()
+		.antMatchers("/servlet/retrieve-all-user").permitAll()
+		.antMatchers("/servlet/delete-user/{idUser}").permitAll()
+		.antMatchers("/servlet/add-subject").permitAll()
+		
+		.antMatchers("/servlet/authenticate").permitAll()
 		.antMatchers("/servlet/forgot/{email}").permitAll()
 		.antMatchers("/servlet/add-basket").permitAll()
 		.antMatchers("/servlet/affect-basket-to-user/{idbasket}/{iduser}").permitAll()
@@ -110,6 +178,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
 		.antMatchers("/servlet/users-names").permitAll()
 		.antMatchers("/servlet/sending").permitAll()
+
 		//.antMatchers("/servlet/getAllOrder").permitAll()
 		.antMatchers("/servlet/delete-order/{idOrder}").permitAll()
 		.antMatchers("/servlet/add-order").permitAll()
@@ -134,34 +203,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 	
+
+		
+		
+		
+		
+		
+		
+
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to
 		// store user's state.
-		exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+		exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+		.and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	@Bean
-    public JavaMailSender javaMailSender() { 
-    	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-    	mailSender.setHost("smtp.gmail.com");
-    	mailSender.setPort(587);
-    	mailSender.setUsername("tarek.messaoudi.1996@gmail.com");
-    	mailSender.setPassword("curvanord123kingzoogataga");
-    	Properties props = mailSender.getJavaMailProperties();
-    	props.put("mail.transport.protocol", "smtp");
-    	props.put("mail.smtp.auth", "true");
-    	props.put("mail.smtp.starttls.enable", "true");
-    	props.put("mail.debug", "true");
-    	return mailSender;
-    }
-	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().regexMatchers("^(/servlet/authenticate).*");
+		//web.ignoring().regexMatchers("^(/servlet/authenticate).*");
 	}
 }

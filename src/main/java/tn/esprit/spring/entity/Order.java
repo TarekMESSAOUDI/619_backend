@@ -2,6 +2,7 @@ package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,9 +45,8 @@ public class Order implements Serializable {
 	@ManyToOne
 	User user;
 	
-	@ManyToOne
-	@JoinColumn(name="idProduct")
-	Product product;
+	@OneToMany
+	private Set<Product> products;
 
 	public Long getIdOrder() {
 		return idOrder;
@@ -113,13 +114,7 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 
 	public Order() {
 		super();
@@ -139,7 +134,21 @@ public class Order implements Serializable {
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
-		this.product = product;
+		
+	}
+
+	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
+			PaymentType paymentType, Bill bill, User user, Set<Product> products) {
+		super();
+		this.dateOrder = dateOrder;
+		this.productNumberOrder = productNumberOrder;
+		this.stateOrder = stateOrder;
+		this.amountOrder = amountOrder;
+		this.prix = prix;
+		this.paymentType = paymentType;
+		this.bill = bill;
+		this.user = user;
+		this.products = products;
 	}
 
 	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
@@ -154,7 +163,7 @@ public class Order implements Serializable {
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
-		this.product = product;
+	
 	}
 
 	public Order(Long idOrder, Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder,
@@ -167,6 +176,14 @@ public class Order implements Serializable {
 		this.amountOrder = amountOrder;
 		
 		this.paymentType = paymentType;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,

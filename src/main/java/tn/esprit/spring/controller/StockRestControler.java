@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import tn.esprit.spring.entity.Stock;
 import tn.esprit.spring.entity.TypeStock;
 import tn.esprit.spring.repository.StockRepository;
 import tn.esprit.spring.service.StockService;
-
+@CrossOrigin
 @RestController
 public class StockRestControler {
 	
@@ -32,7 +33,7 @@ public class StockRestControler {
 	
 	
 	// http://localhost:9090/SpringMVC/servlet/retrieve-all-Stocks
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 	@GetMapping("/retrieve-all-Stocks")
 	@ResponseBody
 	public List<Stock> getStocks() {
@@ -40,7 +41,7 @@ public class StockRestControler {
 	return list;
 	}
 
-	//localhost:9090/SpringMVC/servlet/retrieve-stock/{stock-id}
+	//http://localhost:9091/SpringMVC/servlet/retrieve-stock/{stock-id}
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 		@GetMapping("/retrieve-stock/{stock-id}")
 		@ResponseBody
@@ -51,7 +52,7 @@ public class StockRestControler {
 		
 		
 		// http://localhost:9090/SpringMVC/servlet/add-stock
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 		@PostMapping("/add-stock")
 		@ResponseBody
 		public Stock addStock(@RequestBody Stock s) {
@@ -61,7 +62,7 @@ public class StockRestControler {
 	
 	
 		//http://localhost:9090/SpringMVC/servlet/remove-stock/{stock-id}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 			@DeleteMapping("/remove-stock/{stock-id}")
 			@ResponseBody
 			public void removeStock(@PathVariable("stock-id") Long stockId) {
@@ -71,7 +72,7 @@ public class StockRestControler {
 			
 			
 			//http://localhost:9090/SpringMVC/servlet/update-stock
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 			@PutMapping("/update-stock")
 			@ResponseBody
 			public Stock updatethestock(@RequestBody Stock st) {
@@ -81,7 +82,7 @@ public class StockRestControler {
 			
 			
 			
-			// http://localhost:9090/SpringMVC/servlet/retrieve-Stock-By-Name/{Stock-nameStock}
+			// http://localhost:9091/SpringMVC/servlet/retrieve-Stock-By-Name/{Stock-nameStock}
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 						@GetMapping("/retrieve-Stock-By-Name/{Stock-nameStock}")
 						@ResponseBody

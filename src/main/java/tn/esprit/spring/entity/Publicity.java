@@ -43,7 +43,16 @@ public class Publicity implements Serializable {
 	private String descriptionPublicity ;
 	private int InitialViewNumber ;
 	private int finalViewNumber ;
+	private String fileName;
 	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	@ManyToOne
 	User user;
 
@@ -249,6 +258,26 @@ public class Publicity implements Serializable {
 		this.descriptionPublicity = descriptionPublicity;
 		InitialViewNumber = initialViewNumber;
 		this.finalViewNumber = finalViewNumber;
+	}
+	public Publicity(String namePublicity, Date startDatePublicity, Date endDatePublicity,
+			TargetPublicity targetPublicity, ChannelPublicity channelPublicity, float costPublicity,
+			boolean statusPublicity, String mailOwnerPublicity, int phoneOwnerPublicity, String typePublicity,
+			String descriptionPublicity, int initialViewNumber, int finalViewNumber, String fileName) {
+		super();
+		this.namePublicity = namePublicity;
+		this.startDatePublicity = startDatePublicity;
+		this.endDatePublicity = endDatePublicity;
+		this.targetPublicity = targetPublicity;
+		this.channelPublicity = channelPublicity;
+		this.costPublicity = costPublicity;
+		this.statusPublicity = statusPublicity;
+		this.mailOwnerPublicity = mailOwnerPublicity;
+		this.phoneOwnerPublicity = phoneOwnerPublicity;
+		this.typePublicity = typePublicity;
+		this.descriptionPublicity = descriptionPublicity;
+		InitialViewNumber = initialViewNumber;
+		this.finalViewNumber = finalViewNumber;
+		this.fileName = fileName;
 	}
 
 	public Publicity() {

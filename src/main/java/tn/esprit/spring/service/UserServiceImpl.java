@@ -70,6 +70,43 @@ public class UserServiceImpl implements IUserService{
 		ur.save(user);
 		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
 	}
+	
+	
+	@Override
+	public ResponseEntity<?> ajouterUser(User user) {
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setConfirmPasswordUser(encoder.encode(user.getConfirmPasswordUser()));
+		
+		if (user == null) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add values!"));
+		}
+		if (user.getPassword().equals(user.getConfirmPasswordUser() != null)) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Confirm your password!"));
+		}
+		if (user.getAdressUser().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add address!"));
+		}
+		if (user.getAdressUser().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add bithday date!"));
+		}
+		if (!(user.getBirthDateUser() instanceof Date)) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add bithday date!"));
+		}
+		if (user.getUsername().equals("")) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please add your first name!"));
+		}
+		if (user.getEmailUser().equals("") || !UserServiceImpl.validate(user.getEmailUser())) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: please check your mail!"));
+		}
+		if (us.retrieveUserByUsername(user.getUsername()) != null) {
+			return ResponseEntity.badRequest().body(new ResponseMessage("Error: Username is already taken!"));
+		}
+		if (us.findBymail(user.getEmailUser()) != null) {
+				return ResponseEntity.badRequest().body(new ResponseMessage("Error: Email is already taken!"));		
+		}
+		ur.save(user);
+		return ResponseEntity.ok(new ResponseMessage("user added Succefully"));
+	}
 
 	@Override
 	public void updateResettoken(String token, String emailUser) throws UserNotFoundException{
@@ -106,7 +143,7 @@ public class UserServiceImpl implements IUserService{
 		if (!encoder.encode(user.getPassword()).equals(userinthedatabase.getPassword())) {
 			user.setPassword(encoder.encode(user.getPassword()));
 		}
-		return us.updateUser(user);
+		return ur.save(user);
 	}
 
 	@Override
@@ -242,5 +279,6 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

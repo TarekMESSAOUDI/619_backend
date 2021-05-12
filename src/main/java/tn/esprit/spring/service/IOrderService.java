@@ -1,7 +1,9 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
+
 import java.util.Optional;
+
 
 import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.PaymentType;
@@ -27,6 +29,7 @@ public interface IOrderService {
 	List<Order> getAllOrder_by_Client(int idUser);
 
 
+
 	
 
 	void orderpdf(Long idOrder);
@@ -36,5 +39,6 @@ public interface IOrderService {
 
 
 	
+
 	
 }

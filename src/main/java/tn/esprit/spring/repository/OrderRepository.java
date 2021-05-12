@@ -10,7 +10,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
 import tn.esprit.spring.entity.Bill;
+
 import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.PaymentType;
 
@@ -38,8 +40,10 @@ public interface OrderRepository extends CrudRepository <Order,Long> {
     public List<Order> getAllOrder_by_Client(int idUser);
 
 
+
 	@Query(value = "SELECT * FROM T_ORDER o WHERE id_order=?1", nativeQuery = true)
 	public Order getOne(Long idOrder);
+
 
 	
 	

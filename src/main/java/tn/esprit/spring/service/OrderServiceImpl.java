@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,10 +10,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.List;
+
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -30,6 +35,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import tn.esprit.spring.entity.Order;
 import tn.esprit.spring.entity.PaymentType;
 import tn.esprit.spring.repository.BillRepository;
+
+import tn.esprit.spring.entity.Order;
+import tn.esprit.spring.entity.PaymentType;
+
 import tn.esprit.spring.repository.OrderRepository;
 
 
@@ -38,7 +47,9 @@ public class OrderServiceImpl implements IOrderService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+
 	private BillRepository billRepository;
+
 	
 	
 
@@ -53,11 +64,13 @@ public class OrderServiceImpl implements IOrderService {
 	}
 	
 	@Override
+
 	public Optional<Order> getBill_by_ID(Long idOrder) {
 		return orderRepository.findById(idOrder);
 	}
 	
 	@Override
+
 	public Order updateOrder(Order o) {
 		
 		return orderRepository.save(o);
@@ -96,6 +109,7 @@ public class OrderServiceImpl implements IOrderService {
 		return orderRepository.getAllOrder_by_Client(idUser);
 	}
 	
+
 	
 	
 	@Override
@@ -274,4 +288,8 @@ public class OrderServiceImpl implements IOrderService {
 }
 	
 
+
+
+
+}
 

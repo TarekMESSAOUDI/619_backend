@@ -29,6 +29,10 @@ public interface IBillService {
 
 	String get_payment_type_by_idBill(Long idBill);
 
+
 	//void billpdf(Long idBill);
+
+	void billpdf(Long idBill);
+
 
 }

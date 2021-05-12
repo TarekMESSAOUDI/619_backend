@@ -101,7 +101,7 @@ public class CommentRestControler {
 			
 			
 			
-			
+//			http://localhost:9091/SpringMVC/servlet/affecterSubjecttoComment/{ids}/{id}"
 			@PutMapping("/affecterSubjecttoComment/{ids}/{id}")
 			public void affecterSubjecttoComment(@PathVariable("ids") int idSubject, @PathVariable("id") long idComment) {
 				commentservice.affecterSubjecttoComment(idSubject, idComment);
