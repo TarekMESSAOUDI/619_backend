@@ -46,10 +46,11 @@ public class Category implements Serializable {
 		this.nameCategory = nameCategory;
 	}
 
+	@JsonIgnore
 	public Set<UnderCategory> getUnderCategory() {
 		return UnderCategory;
 	}
-
+	@JsonIgnore
 	public void setUnderCategory(Set<UnderCategory> underCategory) {
 		UnderCategory = underCategory;
 	}

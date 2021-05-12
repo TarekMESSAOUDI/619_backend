@@ -24,7 +24,7 @@ public class FileStrorageService {
 	FileRepository FR;
 	@Autowired
 	IPublicityService PS;
-	
+
 	
 		
 		public FileDB store(MultipartFile file) throws IOException {

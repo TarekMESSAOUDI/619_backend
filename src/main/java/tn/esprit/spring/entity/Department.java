@@ -31,12 +31,27 @@ public class Department implements Serializable {
 	private TypeDepartment typeDepartment ;
 	private int capacityDepartment ;
 	
+	private int maxamountDep;
+	private int AmountDep;
+	private String fileName;
+	
 	@ManyToOne
 	User user ;
+	
+	
+	
+	
 		
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="Department")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="idDepartment")
+
 	@JsonIgnore
 	private Set<Product> Product;
+	
+	
+	
+	
+	
 
 	public int getIdDepartment() {
 		return idDepartment;
@@ -78,12 +93,43 @@ public class Department implements Serializable {
 		this.user = user;
 	}
 
+
+
+
+
+@JsonIgnore
 	public Set<Product> getProduct() {
 		return Product;
 	}
+@JsonIgnore
 
 	public void setProduct(Set<Product> product) {
 		Product = product;
+	}
+	
+
+	public String getFileName() {
+	return fileName;
+}
+
+public void setFileName(String fileName) {
+	this.fileName = fileName;
+}
+
+	public int getMaxamountDep() {
+		return maxamountDep;
+	}
+
+	public void setMaxamountDep(int maxamountDep) {
+		this.maxamountDep = maxamountDep;
+	}
+
+	public int getAmountDep() {
+		return AmountDep;
+	}
+
+	public void setAmountDep(int amountDep) {
+		AmountDep = amountDep;
 	}
 
 	public Department() {
@@ -126,7 +172,40 @@ public class Department implements Serializable {
 		this.typeDepartment = typeDepartment;
 		this.capacityDepartment = capacityDepartment;
 	}
-		
+
+	public Department(int idDepartment, String nameDepartment, TypeDepartment typeDepartment, int capacityDepartment,
+			int maxamountDep, int amountDep, User user, Set<tn.esprit.spring.entity.Product> product) {
+		super();
+		this.idDepartment = idDepartment;
+		this.nameDepartment = nameDepartment;
+		this.typeDepartment = typeDepartment;
+		this.capacityDepartment = capacityDepartment;
+		this.maxamountDep = maxamountDep;
+		AmountDep = amountDep;
+		this.user = user;
+		Product = product;
+	}
+
+	public Department(String nameDepartment, TypeDepartment typeDepartment, int capacityDepartment, int maxamountDep,
+			int amountDep, String fileName, User user, Set<tn.esprit.spring.entity.Product> product) {
+		super();
+		this.nameDepartment = nameDepartment;
+		this.typeDepartment = typeDepartment;
+		this.capacityDepartment = capacityDepartment;
+		this.maxamountDep = maxamountDep;
+		AmountDep = amountDep;
+		this.fileName = fileName;
+		this.user = user;
+		Product = product;
+	}
+	
+	
+	
+	
+	
+
+	
+	
 		
 	
 }

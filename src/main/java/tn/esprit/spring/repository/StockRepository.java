@@ -22,4 +22,7 @@ List<Stock> findByName(@Param("t")String nameStock);
 	 public int MaxQuantity();
 	
 	
+	@Query(value="SELECT p.idProduct FROM Product p,Stock s  WHERE   p.quantityProduct<10 ",nativeQuery=true)
+	List<Long> missingProduct();
+	
 }
