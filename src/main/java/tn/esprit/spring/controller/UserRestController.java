@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IUserRepository;
 import tn.esprit.spring.service.IUserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserRestController {
 
@@ -30,6 +32,7 @@ public class UserRestController {
 	IUserService us;
 	
 	// http://localhost:9091/SpringMVC/servlet/add-user
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/add-user")
 	@ResponseBody
 	public ResponseEntity<?> addUser(@RequestBody User user) {

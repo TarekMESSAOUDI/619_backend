@@ -102,14 +102,14 @@ public class BillController {
 				   
 			   }
 			 
-			// URL : http://localhost:9091/SpringMVC/servlet//showPDF/{idBill}
-		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('CLIENT') or hasAuthority('DELIVERYPERSON')")
-			   @GetMapping("/showPDF/{idBill}")
-			   public void billpdf (@PathVariable("idBill") Long idBill) {
-				   
-				 billService.billpdf(idBill);
-			   
-			   }
+//			// URL : http://localhost:9091/SpringMVC/servlet//showPDF/{idBill}
+//		@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('CLIENT') or hasAuthority('DELIVERYPERSON')")
+//			   @GetMapping("/showPDF/{idBill}")
+//			   public void billpdf (@PathVariable("idBill") Long idBill) {
+//				   
+//				 billService.billpdf(idBill);
+//			   
+//			   }
 	
 	
 	

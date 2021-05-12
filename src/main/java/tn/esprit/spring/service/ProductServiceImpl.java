@@ -4,8 +4,7 @@ package tn.esprit.spring.service;
 
 
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -115,6 +114,37 @@ public class ProductServiceImpl implements IProductService {
 		filerepository.save(image);	
 		
 	}
+	
+	//Meissa
+	
+	public List<Product> list(){
+        List<Product> list = (List<Product>) productRepository.findAll();
+        return list;
+    }
+
+    public Optional<Product> getById(int idProduct){
+        return productRepository.findById(idProduct);
+    }
+
+    public Optional<Product> getByNombre(String nombre){
+        return productRepository.findByNombre(nombre);
+    }
+
+    public void save(Product Product){
+        productRepository.save(Product);
+    }
+
+    public void delete(int idProduct){
+        productRepository.deleteById(idProduct);
+    }
+
+    public boolean existsId(int idProduct){
+        return productRepository.existsById(idProduct);
+    }
+
+    public boolean existsNombre(String nombre){
+        return productRepository.existsByNombre(nombre);
+    }
 
 	}
 

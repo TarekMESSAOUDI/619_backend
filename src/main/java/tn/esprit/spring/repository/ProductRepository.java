@@ -3,6 +3,7 @@ package tn.esprit.spring.repository;
 import tn.esprit.spring.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -38,6 +39,11 @@ public List<Product> findAllByTitleProduct(String name);
 //			+"JOIN p.UnderCategory u"
 //			+"WHERE p.titleProduct =: titleProduct AND u.idUnderCategory =: idUnderCategory")
 //    public List<Product>  GetproductByidUcandTitle(int iduc,String name);
+	
+	//Meissa
+	
+	Optional<Product> findByNombre(String nombre);
+    boolean existsByNombre(String nombre);
 
 }
 

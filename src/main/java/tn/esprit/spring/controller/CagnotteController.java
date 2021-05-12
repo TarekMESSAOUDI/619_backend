@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import tn.esprit.spring.entity.Cagnotte;
 import tn.esprit.spring.service.ICagnotteService;
 
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class CagnotteController {
 	
@@ -26,7 +27,7 @@ public class CagnotteController {
 	private ICagnotteService cagnotteService;
 	
 	// http://localhost:9091/SpringMVC/servlet/add-cagnotte
-		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+		//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@PostMapping("/add-cagnotte")
 		@ResponseBody
 		public Cagnotte addCagnotte(@RequestBody Cagnotte c) {
@@ -35,7 +36,7 @@ public class CagnotteController {
 		}
 	
 	// URL : http://localhost:9091/SpringMVC/servlet/getAllCagnotte
-		@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+		//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 		@GetMapping(value = "getAllCagnotte")
 	    public List<Cagnotte> getAllCagnotte(){
 		return cagnotteService.getAllCagnotte();
@@ -43,7 +44,7 @@ public class CagnotteController {
 	    
 	 // URL : http://localhost:9091/SpringMVC/servlet/delete-cagnotte
 		   @DeleteMapping(value = "delete-cagnotte/{idCagnotte}")
-		   @PreAuthorize("hasAuthority('ADMINISTRATOR')")
+		   //@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 			public void deleteCagnotte(@PathVariable("idCagnotte")int idCagnotte){
 			   cagnotteService.deleteCagnotte(idCagnotte);
 		   }
