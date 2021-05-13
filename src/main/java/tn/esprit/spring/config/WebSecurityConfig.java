@@ -69,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/remove-stock/{stock-id}").permitAll()
 		.antMatchers("/servlet/update-stock").permitAll()
 		.antMatchers("/servlet/alteProductToDepartment/{iddepartment}/{idproduct}").permitAll()
-		.antMatchers("/servlet/add-product").permitAll()
+		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
 		
 		.antMatchers("/servlet/GETALLPRODUCTS").permitAll()
 		
@@ -78,6 +78,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/prod/{id}").permitAll()
 		
 		.antMatchers("/servlet/Productss").permitAll()
+		.antMatchers("/servlet/zxing").permitAll()
+		.antMatchers("/servlet/department/{id}").permitAll()
+
+
+		
+	
+
+		
 		
 	
 		

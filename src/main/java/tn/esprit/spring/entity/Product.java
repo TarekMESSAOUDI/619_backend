@@ -192,7 +192,7 @@ public class Product implements Serializable {
 	
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct, String fileName, Department idDepartment, tn.esprit.spring.entity.Basket basket,
 			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock, tn.esprit.spring.entity.FileDB fileDB) {
 
@@ -243,7 +243,7 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
-		Department = department;
+		idDepartment = department;
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;
