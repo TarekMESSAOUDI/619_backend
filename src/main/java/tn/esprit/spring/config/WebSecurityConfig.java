@@ -103,7 +103,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/depart/{id}").permitAll()
 		.antMatchers("servlet/department/{id}").permitAll()
 		
-		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
+		.antMatchers("/servlet/Getprodbydep").permitAll()
 		
 		
 		
