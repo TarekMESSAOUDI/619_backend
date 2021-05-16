@@ -105,16 +105,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		.antMatchers("/servlet/Getprodbydep").permitAll()
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		.antMatchers("/servlet/add-publicity").permitAll()
 
+		.antMatchers("/servlet/ImgPublcities/{id}").permitAll()
+		
+		
+		.antMatchers("/servlet/nbstocks").permitAll()
+
+		
+		
+				
+
+		
+		
+		
+		
 
 
 		
