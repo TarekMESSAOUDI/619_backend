@@ -23,6 +23,9 @@ public class Cagnotte implements Serializable {
 	private int idCagnotte ;
 	private String nameCagnotte;
 	private int amountCagnotte ;
+	private String Email;
+	private String imagenURL;
+	private String name;
 	
 	@OneToOne(mappedBy="Cagnotte")
 	@JsonIgnore
@@ -58,6 +61,36 @@ public class Cagnotte implements Serializable {
 
 	public void setCharityEvent(CharityEvent charityEvent) {
 		CharityEvent = charityEvent;
+	}
+	
+	
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+	
+	
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImagenURL() {
+		return imagenURL;
+	}
+
+	public void setImagenURL(String imagenURL) {
+		this.imagenURL = imagenURL;
 	}
 
 	public Cagnotte() {
