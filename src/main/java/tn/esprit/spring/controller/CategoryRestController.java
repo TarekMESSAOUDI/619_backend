@@ -25,7 +25,6 @@ import tn.esprit.spring.service.ICategoryService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@CrossOrigin
 public class CategoryRestController {
 	
 	@Autowired

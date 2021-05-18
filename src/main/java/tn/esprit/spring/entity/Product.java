@@ -28,25 +28,23 @@ public class Product implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProduct ;
+	@NotBlank
+    @Column(unique = true)
 	private String titleProduct ;
 	private String descriptionProduct ;
 	private int quantityProduct ;
+	@NotNull
 	private float priceProduct ;
 	private String barcodeProduct ;
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
+	private String imagenURL;
 
-	@NotBlank
-	@Column(unique = true)
-	private String nombre;
-	private String description;
-	@NotNull
-	private int prix;
-	private String imageURL;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
-	private Set<Order> order;
+	
+	@ManyToOne
+	Order order;
 
 	private String fileName;
 
@@ -188,36 +186,14 @@ public class Product implements Serializable {
 	
 	
 
-	public String getNombre() {
-		return nombre;
+	
+
+	public String getImagenURL() {
+		return imagenURL;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getPrix() {
-		return prix;
-	}
-
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
-
-	public String getImageURL() {
-		return imageURL;
-	}
-
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+	public void setImagenURL(String imagenURL) {
+		this.imagenURL = imagenURL;
 	}
 
 	public Product() {

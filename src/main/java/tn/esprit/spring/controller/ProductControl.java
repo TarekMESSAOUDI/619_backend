@@ -55,9 +55,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import ch.qos.logback.core.Context;
+import http.Mensaje;
 import io.netty.handler.ipfilter.IpSubnetFilter;
 import tn.esprit.spring.ResourceNotFoundException.ResourceNotFoundException;
-
+import tn.esprit.spring.entity.Articulo;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.UnderCategory;
 import tn.esprit.spring.repository.ProductRepository;
@@ -68,9 +69,6 @@ import tn.esprit.spring.response.Response;
 @CrossOrigin
 @RestController
 
-
-
-@CrossOrigin
 
 public class ProductControl {
 	@Autowired
@@ -126,7 +124,7 @@ public class ProductControl {
 	//http://localhost:9090/SpringMVC/servlet/add-product
 
 	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
-	@PostMapping("/add-product")
+	//@PostMapping("/add-product")
 
 
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
@@ -340,6 +338,35 @@ public class ProductControl {
 				return response;
 			}
 		 
+	//meissa
 		 
+		 @GetMapping("/lista")
+		    public ResponseEntity<List<Product>> lista(){
+		        List<Product> lista = productService.lista();
+		        return new ResponseEntity<List<Product>>(lista, HttpStatus.OK);
+		    }
 
-}
+		 @GetMapping("/detalle/{idProduct}")
+		    public ResponseEntity<Product> detalle(@PathVariable("idProduct") int idProduct){
+		        if(!productService.existsId(idProduct))
+		            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+		        Product product = productService.getById(idProduct).get();
+		        return new ResponseEntity<Product>(product, HttpStatus.OK);
+		    }
+		 
+//		  @PostMapping("/nuevo")
+//		    public ResponseEntity<?> crear(@RequestBody Product product){
+//		        if(StringUtils.isBlank(product.getTitleProduct()));
+//		            return new ResponseEntity(new Mensaje("numbre obligatoir"), HttpStatus.BAD_REQUEST);
+//		        if((Float) product.getPriceProduct() == null || product.getPriceProduct() < 1)
+//		            return new ResponseEntity(new Mensaje("prix obligatoir"), HttpStatus.BAD_REQUEST);
+//		        if(productService.existsTitle(product.getTitleProduct()));
+//	            return new ResponseEntity(new Mensaje("that number already exists"), HttpStatus.BAD_REQUEST);
+//	        productService.save(product);
+//	        return new ResponseEntity(new Mensaje("articl created"), HttpStatus.CREATED);
+//		        
+//		    }
+
+	}
+
+

@@ -107,13 +107,16 @@ public List<Product> findAllByTitleProduct(String name);
 	
 	//Meissa
 	
-	Optional<Product> findByNombre(String nombre);
-    boolean existsByNombre(String nombre);
+	
 
 
 
 	@Query(value = "SELECT * FROM t_product t WHERE under_category_id_undercategory=?1", nativeQuery = true)
 	public List<Product> findAllProductByIdUnderCategory(@Param("id")int id);
+	
+	
+	public Optional<Product> findBytitleProduct(String titleProduct);
+	public boolean existsByTitleProduct(String titleProduct);
 
 	
 	

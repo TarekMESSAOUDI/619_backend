@@ -77,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
 		.antMatchers("/servlet/prod/{id}").permitAll()
 		
-		.antMatchers("/servlet/Productss").permitAll()
+		
 		.antMatchers("/servlet/zxing").permitAll()
 		.antMatchers("/servlet/department/{id}").permitAll()
 
@@ -103,6 +103,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/depart/{id}").permitAll()
 		.antMatchers("servlet/department/{id}").permitAll()
 		
+
+		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
+	
+
 		.antMatchers("/servlet/Getprodbydep").permitAll()
 		
 		.antMatchers("/servlet/add-publicity").permitAll()
@@ -125,6 +129,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 		.antMatchers("/servlet/authenticate").permitAll()
+
 
 		.antMatchers("/servlet/add-user").permitAll()
 		
@@ -183,14 +188,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
 		.antMatchers("/servlet/users-names").permitAll()
 		.antMatchers("/servlet/sending").permitAll()
-
-		//.antMatchers("/servlet/getAllOrder").permitAll()
+		.antMatchers("/servlet/getAllOrder").permitAll()
 		.antMatchers("/servlet/delete-order/{idOrder}").permitAll()
 		.antMatchers("/servlet/add-order").permitAll()
 		.antMatchers("/servlet/modify-order").permitAll()
 		.antMatchers("/servlet/showPDF/{idOrder}").permitAll()
-		.antMatchers("/servlet/articulo/lista").permitAll()
-		.antMatchers("/servlet/articulo/detalle/{id}").permitAll()
+		.antMatchers("/servlet/lista").permitAll()
+		.antMatchers("/servlet/detalle/{idProduct}").permitAll()
+		.antMatchers("/servlet/nuevo").permitAll()
 		.antMatchers("/servlet/stripe/paymentintent").permitAll()
 		.antMatchers("/servlet/stripe/confirm/{id}").permitAll()
 		.antMatchers("/servlet/stripe/cancel/{id}").permitAll()
@@ -202,6 +207,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/order/{idOrder}").permitAll()
 		.antMatchers("/servlet/show-all-products").permitAll()
 		.antMatchers("/servlet/show-all-categories").permitAll()
+		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
+		.antMatchers("/servlet/Productss").permitAll()
+		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
+		
+		
+		
+		
 		
 		
 	
