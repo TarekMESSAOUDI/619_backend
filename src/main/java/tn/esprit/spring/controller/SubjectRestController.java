@@ -30,7 +30,7 @@ public class SubjectRestController {
 	ISubjectRepository sr;
 	
 		// http://localhost:9091/SpringMVC/servlet/add-subject
-	//@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
+		@PreAuthorize("hasAuthority('ADMINISTRATOR') ")
 		@PostMapping("/add-subject")
 		@ResponseBody
 		public String addSubject(@RequestBody Subject sub) {

@@ -58,10 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 		// dont authenticate this particular request
-		
-		
+	
 		.authorizeRequests()
-		
 		.antMatchers("/servlet/retrieve-all-Stocks").permitAll()
 		.antMatchers("/servlet/add-department").permitAll()
 		.antMatchers("/servlet/remove-department/{department-id}").permitAll()
@@ -69,6 +67,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/remove-stock/{stock-id}").permitAll()
 		.antMatchers("/servlet/update-stock").permitAll()
 		.antMatchers("/servlet/alteProductToDepartment/{iddepartment}/{idproduct}").permitAll()
+
+		.antMatchers("/servlet/add-product").permitAll()
+
 		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
 		
 		.antMatchers("/servlet/GETALLPRODUCTS").permitAll()
@@ -97,22 +98,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 		
 		.antMatchers("/servlet/Departmentss").permitAll()
-		
 		.antMatchers("/servlet/PostPubImage").permitAll()
-		
 		.antMatchers("/servlet/depart/{id}").permitAll()
 		.antMatchers("servlet/department/{id}").permitAll()
+
+		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
+		.antMatchers("/servlet/Productss").permitAll()
+
 		
 
 		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
 	
 
 		.antMatchers("/servlet/Getprodbydep").permitAll()
-		
+
 		.antMatchers("/servlet/add-publicity").permitAll()
 
 		.antMatchers("/servlet/ImgPublcities/{id}").permitAll()
 		
+
+		.antMatchers("/servlet/remove-publicity/{pubId}").permitAll()
+
 		
 		.antMatchers("/servlet/nbstocks").permitAll()
 
@@ -132,11 +138,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 		.antMatchers("/servlet/add-user").permitAll()
-		
+		.antMatchers("/servlet/update-user").permitAll()
 		.antMatchers("/servlet/ajouter-user").permitAll()
 		.antMatchers("/servlet/retrieve-all-user").permitAll()
 		.antMatchers("/servlet/delete-user/{idUser}").permitAll()
 		.antMatchers("/servlet/add-subject").permitAll()
+		.antMatchers("/servlet/forgot_password").permitAll()
+		.antMatchers("/servlet/reset_password").permitAll()
+		.antMatchers("/servlet/sendme/{emailUser}").permitAll()
+		.antMatchers("/servlet/updatepassword/{emailUser}/{password}/{cpassword}").permitAll()
+		.antMatchers("/servlet/add-publicity").permitAll()
+		.antMatchers("/servlet/ImgPublcities/{id}").permitAll()
+		.antMatchers("/servlet/userss").permitAll()
+		.antMatchers("/servlet/Imguserss/{id}").permitAll()
 		
 		.antMatchers("/servlet/authenticate").permitAll()
 		.antMatchers("/servlet/forgot/{email}").permitAll()
@@ -178,6 +192,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-min-stars-subject").permitAll()
 		.antMatchers("/servlet/retrieve-subject-by-starsless/{subject-starsless}").permitAll()
 		.antMatchers("/servlet/show-all-under-categories").permitAll()
+		.antMatchers("/servlet/show-all-categories").permitAll()
 		.antMatchers("/servlet/GetByIdUnderCat/{underCategorytId}").permitAll()
 		.antMatchers("/servlet/update-user").permitAll()
 		.antMatchers("/servlet/retrieve-user-by-id/{user-id}").permitAll()
@@ -212,21 +227,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
 		
 		
-		
-		
-		
-		
-	
-		
-		
-	
-
-		
-		
-		
-		
-		
-		
 
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
@@ -242,6 +242,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		//web.ignoring().regexMatchers("^(/servlet/authenticate).*");
+		web.ignoring().regexMatchers("^(/servlet/authenticate).*");
 	}
 }

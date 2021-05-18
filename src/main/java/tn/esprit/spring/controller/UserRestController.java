@@ -1,9 +1,18 @@
 package tn.esprit.spring.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParseException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,20 +22,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Role;
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IUserRepository;
+import tn.esprit.spring.response.Response;
 import tn.esprit.spring.service.IUserService;
-
-
-@CrossOrigin(origins = "http://localhost:4200")
 
 
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class UserRestController {
 
 	@Autowired
@@ -35,13 +49,16 @@ public class UserRestController {
 	@Autowired
 	IUserService us;
 	
+	@Autowired
+	ServletContext context;
+	
 	// http://localhost:9091/SpringMVC/servlet/add-user
 	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/add-user")
 	@ResponseBody
 	public ResponseEntity<?> addUser(@RequestBody User user) {
-	ResponseEntity<?> u = us.addUser(user);
-	return u;
+		return us.addUser(user);
+	
 	}
 	
 	// http://localhost:9091/SpringMVC/servlet/add-user
@@ -54,7 +71,7 @@ public class UserRestController {
 	}
 
 	// http://localhost:9091/SpringMVC/servlet/delete-user/{user-id}
-	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@DeleteMapping("/delete-user/{idUser}")
 	@ResponseBody
 	public void deleteUser(@PathVariable("idUser") int userId) {
@@ -67,20 +84,6 @@ public class UserRestController {
 	public User updateUser(@RequestBody User user) throws Exception {
 	return us.updateUser(user);
 	}
-	
-	
-	// http://localhost:9091/SpringMVC/servlet/update-user
-//	@PutMapping("/update-user/{id}")
-//	//@ResponseBody
-//	public ResponseEntity<User> updateUser(@PathVariable("id") int idUser,@RequestBody User user) throws Exception {
-//	java.util.Optional<User> userToUpdate = ur.findById(idUser);
-//	if (userToUpdate.isPresent()){
-//		userToUpdate.get().setUsername(user.getUsername());
-//		userToUpdate.get().setLastNameUser(user.getLastNameUser());
-//		userToUpdate.get().setEmailUser(user.getEmailUser());
-//	}
-//	return new ResponseEntity<> (HttpStatus.NOT_FOUND);
-//	}
 	
 	// http://localhost:9091/SpringMVC/servlet/retrieve-all-user
 	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
@@ -250,4 +253,60 @@ public class UserRestController {
 	public Date agemin() throws Exception {
 	return ur.getminage();
 	}
+	
+	@GetMapping("/sendme/{emailUser}")
+	public void forgotpass(@PathVariable ("emailUser") String emailUser){
+		us.forgotpass(emailUser);
+	}
+	
+	@PutMapping("/updatepassword/{emailUser}/{password}/{cpassword}")
+	void updatePassword(@PathVariable ("emailUser") String emailUser, @PathVariable ("password") String newPassword,@PathVariable ("cpassword") String confirmPassword){
+		us.updatePassword(emailUser, newPassword,confirmPassword);
+	}
+	
+	
+	
+	 @PostMapping("/userss")
+	 public ResponseEntity<Response> createUser (@RequestParam("file") MultipartFile file,
+			 @RequestParam("article") String product) throws JsonParseException , JsonMappingException , Exception
+	 {
+		 System.out.println("Ok .............");
+        User prod = new ObjectMapper().readValue(product, User.class);
+        boolean isExit = new File(context.getRealPath("/Images/")).exists();
+        if (!isExit)
+        {
+        	new File (context.getRealPath("/Images/")).mkdir();
+        	System.out.println("mk dir.............");
+        }
+        String filename = file.getOriginalFilename();
+        String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
+        File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
+        try
+        {
+        	System.out.println("Image");
+        	 FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
+        	 
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+
+       
+        prod.setFileName(newFileName);
+        User art = ur.save(prod);
+        if (art != null)
+        {
+        	return new ResponseEntity<Response>(new Response (""),HttpStatus.OK);
+        }
+        else
+        {
+        	return new ResponseEntity<Response>(new Response ("User not saved"),HttpStatus.BAD_REQUEST);	
+        }
+	 }
+	 
+	// http://localhost:9090/SpringMVC/servlet/Imgarticles/{id}
+			@GetMapping("/Imguserss/{id}")
+			 public byte[] getPhotos(@PathVariable("id") int id) throws Exception{
+				 User prod  = ur.findById(id).get();
+				 return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+prod.getFileName()));
+			 }
 }
