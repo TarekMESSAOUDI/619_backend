@@ -127,6 +127,17 @@ public class StockRestControler {
 
 			}
 			
+	
+	
+
+	// http://localhost:9091/SpringMVC/servlet/nbstocks
+		@GetMapping("/nbstocks")
+		public int getnbStocks() {
+			
+			return sr.stocknumber();
+		}
+	
+	
 			
 			
 }
