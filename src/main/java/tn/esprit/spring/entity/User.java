@@ -48,7 +48,7 @@ public class User implements Serializable {
 	@Column(name = "lockTime")
 	protected Date lockTime;
 	@Column(name = "resettoken")
-	protected String resettoken;
+	protected String resetPasswordToken;
 	protected boolean isBlocked;
 	protected LocalDate blockDate;
 	protected LocalDate unBlockDate;
@@ -60,6 +60,7 @@ public class User implements Serializable {
 	private ZoneMap zone;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	private String fileName;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	@JsonIgnore
@@ -81,10 +82,10 @@ public class User implements Serializable {
 	private Set<CharityEvent> CharityEvent;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	@JsonIgnore
 	private Set<Publicity> Publicity;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	@JsonIgnore
 	private Set<Delivery> Delivery;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
@@ -210,12 +211,12 @@ public class User implements Serializable {
 		this.lockTime = lockTime;
 	}
 
-	public String getResettoken() {
-		return resettoken;
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
 	}
 
-	public void setResettoken(String resettoken) {
-		this.resettoken = resettoken;
+	public void setResetPasswordToken(String resettoken) {
+		this.resetPasswordToken = resettoken;
 	}
 
 	public boolean isBlocked() {
@@ -370,7 +371,7 @@ public class User implements Serializable {
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
 			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
-			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
+			int failedAttempt, Date lockTime, String resetPasswordToken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, int pointnumber, boolean avilaibility,
 			ZoneMap zone, Role role, Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
 			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
@@ -393,7 +394,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -417,13 +418,13 @@ public class User implements Serializable {
 	public User(String username, String lastNameUser, String cinUser, String password, String confirmPasswordUser,
 			boolean stateUser, String phoneNumberUser, String adressUser, Date birthDateUser, String emailUser,
 			SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
-			String resettoken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
+			String resetPasswordToken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
 			float salaire, int pointnumber, boolean avilaibility, ZoneMap zone, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
 			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
 			Set<tn.esprit.spring.entity.Claim> claim, Set<tn.esprit.spring.entity.CharityEvent> charityEvent,
 			Set<tn.esprit.spring.entity.Publicity> publicity, Set<tn.esprit.spring.entity.Delivery> delivery,
-			Set<tn.esprit.spring.entity.Department> department) {
+			Set<tn.esprit.spring.entity.Department> department,String fileName) {
 		super();
 		this.username = username;
 		this.lastNameUser = lastNameUser;
@@ -439,7 +440,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -449,6 +450,7 @@ public class User implements Serializable {
 		this.avilaibility = avilaibility;
 		this.zone = zone;
 		this.role = role;
+		this.setFileName(fileName);
 //		Order = order;
 //		Basket = basket;
 //		Comment = comment;
@@ -463,7 +465,7 @@ public class User implements Serializable {
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
 			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
-			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
+			int failedAttempt, Date lockTime, String resetPasswordToken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, int pointnumber, boolean avilaibility,
 			ZoneMap zone, Role role) {
 		super();
@@ -482,7 +484,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -497,7 +499,7 @@ public class User implements Serializable {
 	public User(String username, String lastNameUser, String cinUser, String password, String confirmPasswordUser,
 			boolean stateUser, String phoneNumberUser, String adressUser, Date birthDateUser, String emailUser,
 			SexeType sexeUser, boolean accountNonLocked, int failedAttempt, Date lockTime,
-			String resettoken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
+			String resetPasswordToken, boolean isBlocked, LocalDate blockDate, LocalDate unBlockDate, boolean isPrivate,
 			float salaire, int pointnumber, boolean avilaibility, ZoneMap zone, Role role) {
 		super();
 		this.username = username;
@@ -514,7 +516,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -529,7 +531,7 @@ public class User implements Serializable {
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
 			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
-			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
+			int failedAttempt, Date lockTime, String resetPasswordToken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, int pointnumber, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
 			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
@@ -552,7 +554,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -573,7 +575,7 @@ public class User implements Serializable {
 	public User(int idUser, String username, String lastNameUser, String cinUser, String password,
 			String confirmPasswordUser, boolean stateUser, String phoneNumberUser, String adressUser,
 			Date birthDateUser, String emailUser, SexeType sexeUser, boolean accountNonLocked,
-			int failedAttempt, Date lockTime, String resettoken, boolean isBlocked, LocalDate blockDate,
+			int failedAttempt, Date lockTime, String resetPasswordToken, boolean isBlocked, LocalDate blockDate,
 			LocalDate unBlockDate, boolean isPrivate, float salaire, Role role,
 			Set<tn.esprit.spring.entity.Order> order, tn.esprit.spring.entity.Basket basket,
 			Set<tn.esprit.spring.entity.Comment> comment, Set<tn.esprit.spring.entity.ImageUser> imageUser1,
@@ -596,7 +598,7 @@ public class User implements Serializable {
 		this.accountNonLocked = accountNonLocked;
 		this.failedAttempt = failedAttempt;
 		this.lockTime = lockTime;
-		this.resettoken = resettoken;
+		this.resetPasswordToken = resetPasswordToken;
 		this.isBlocked = isBlocked;
 		this.blockDate = blockDate;
 		this.unBlockDate = unBlockDate;
@@ -613,6 +615,15 @@ public class User implements Serializable {
 //		Delivery = delivery;
 //		Department = department;
 	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	
 	
 
