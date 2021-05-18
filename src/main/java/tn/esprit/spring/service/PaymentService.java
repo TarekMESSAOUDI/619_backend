@@ -1,11 +1,14 @@
 package tn.esprit.spring.service;
 
 
+
+
+
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
-import tn.esprit.spring.entity.Payment;
+import http.PaymentIntentDto;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,14 +24,14 @@ public class PaymentService {
     @Value("${stripe.key.secret}")
     String secretKey;
 
-    public PaymentIntent paymentIntent(Payment payment) throws StripeException {
+    public PaymentIntent paymentIntent(PaymentIntentDto paymentIntentDto) throws StripeException {
         Stripe.apiKey = secretKey;
         List<String> paymentMethodTypes = new ArrayList();
         paymentMethodTypes.add("card");
         Map<String, Object> params = new HashMap<>();
-        params.put("amount", payment.getAmount());
-        params.put("currency", payment.getCurrency());
-        params.put("description", payment.getDescription());
+        params.put("amount", paymentIntentDto.getAmount());
+        params.put("currency", paymentIntentDto.getCurrency());
+        params.put("description", paymentIntentDto.getDescription());
         params.put("payment_method_types", paymentMethodTypes);
         return PaymentIntent.create(params);
     }
@@ -48,5 +51,4 @@ public class PaymentService {
         paymentIntent.cancel();
         return paymentIntent;
     }
-
 }

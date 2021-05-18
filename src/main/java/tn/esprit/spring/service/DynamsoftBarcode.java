@@ -13,6 +13,7 @@ import tn.esprit.spring.barcode.BarcodeResponse;
 
 @Service
 public class DynamsoftBarcode {
+	/*
 	
 	
 
@@ -29,7 +30,7 @@ public class DynamsoftBarcode {
     
     
 
-    public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
+    
 
 
         try {
@@ -60,7 +61,7 @@ public class DynamsoftBarcode {
 
     
     
-
+*/
 
 }
 

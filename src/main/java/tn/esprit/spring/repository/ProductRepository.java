@@ -5,6 +5,7 @@ import tn.esprit.spring.entity.Department;
 import tn.esprit.spring.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 public interface ProductRepository extends CrudRepository<Product, Integer>  {
@@ -97,9 +99,29 @@ public List<Product> findAllByTitleProduct(String name);
 	
 	
 
+//	@Query("SELECT"
+//			+"DISTINCT p FROM Product p"
+//			+"JOIN p.UnderCategory u"
+//			+"WHERE p.titleProduct =: titleProduct AND u.idUnderCategory =: idUnderCategory")
+//    public List<Product>  GetproductByidUcandTitle(int iduc,String name);
 	
+	//Meissa
+	
+	
+
+
+
+	@Query(value = "SELECT * FROM t_product t WHERE under_category_id_undercategory=?1", nativeQuery = true)
+	public List<Product> findAllProductByIdUnderCategory(@Param("id")int id);
+	
+	
+	public Optional<Product> findBytitleProduct(String titleProduct);
+	public boolean existsByTitleProduct(String titleProduct);
+
 	
 	
 	
 }
+
+
 

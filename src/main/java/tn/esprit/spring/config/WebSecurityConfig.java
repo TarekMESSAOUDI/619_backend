@@ -67,16 +67,76 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/remove-stock/{stock-id}").permitAll()
 		.antMatchers("/servlet/update-stock").permitAll()
 		.antMatchers("/servlet/alteProductToDepartment/{iddepartment}/{idproduct}").permitAll()
+
 		.antMatchers("/servlet/add-product").permitAll()
+
+		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
+		
+		.antMatchers("/servlet/GETALLPRODUCTS").permitAll()
+		
+		.antMatchers("/servlet/GETALLS").permitAll()
+		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
+		.antMatchers("/servlet/prod/{id}").permitAll()
+		
+		
+		.antMatchers("/servlet/zxing").permitAll()
+		.antMatchers("/servlet/department/{id}").permitAll()
+
+
+		
+	
+
+		
+		
+	
+		
+		
+		
+		
+		
+		
+	
+		
 		.antMatchers("/servlet/Departmentss").permitAll()
 		.antMatchers("/servlet/PostPubImage").permitAll()
 		.antMatchers("/servlet/depart/{id}").permitAll()
 		.antMatchers("servlet/department/{id}").permitAll()
+
 		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
 		.antMatchers("/servlet/Productss").permitAll()
+
 		
+
+		.antMatchers("/servlet/Getprodbydep/{idDepartment}").permitAll()
+	
+
+		.antMatchers("/servlet/Getprodbydep").permitAll()
+
+		.antMatchers("/servlet/add-publicity").permitAll()
+
+		.antMatchers("/servlet/ImgPublcities/{id}").permitAll()
 		
+
 		.antMatchers("/servlet/remove-publicity/{pubId}").permitAll()
+
+		
+		.antMatchers("/servlet/nbstocks").permitAll()
+
+		
+		
+				
+
+		
+		
+		
+		
+
+
+		
+		
+		.antMatchers("/servlet/authenticate").permitAll()
+
+
 		.antMatchers("/servlet/add-user").permitAll()
 		.antMatchers("/servlet/update-user").permitAll()
 		.antMatchers("/servlet/ajouter-user").permitAll()
@@ -143,7 +203,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieve-user-by-email/{user-email}").permitAll()
 		.antMatchers("/servlet/users-names").permitAll()
 		.antMatchers("/servlet/sending").permitAll()
+		.antMatchers("/servlet/getAllOrder").permitAll()
+		.antMatchers("/servlet/delete-order/{idOrder}").permitAll()
+		.antMatchers("/servlet/add-order").permitAll()
+		.antMatchers("/servlet/modify-order").permitAll()
+		.antMatchers("/servlet/showPDF/{idOrder}").permitAll()
+		.antMatchers("/servlet/lista").permitAll()
+		.antMatchers("/servlet/detalle/{idProduct}").permitAll()
+		.antMatchers("/servlet/nuevo").permitAll()
+		.antMatchers("/servlet/stripe/paymentintent").permitAll()
+		.antMatchers("/servlet/stripe/confirm/{id}").permitAll()
+		.antMatchers("/servlet/stripe/cancel/{id}").permitAll()
+		.antMatchers("/servlet/getOrder_by_ID/{idOrder}").permitAll()
+		.antMatchers("/servlet/getAllCagnotte").permitAll()
+		.antMatchers("/servlet/delete-cagnotte/{idCagnotte}").permitAll()
+		.antMatchers("/servlet/add-cagnotte").permitAll()
+		.antMatchers("/servlet/update-order/{idOrder}").permitAll()
+		.antMatchers("/servlet/order/{idOrder}").permitAll()
+		.antMatchers("/servlet/show-all-products").permitAll()
+		.antMatchers("/servlet/show-all-categories").permitAll()
+		.antMatchers("/servlet/add-product/{iduc}/{idDep}").permitAll()
+		.antMatchers("/servlet/Productss").permitAll()
+		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
 		
+		
+
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to

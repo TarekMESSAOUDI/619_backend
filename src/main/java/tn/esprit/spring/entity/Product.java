@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="T_PRODUCT")
@@ -25,15 +28,26 @@ public class Product implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProduct ;
+	@NotBlank
+    @Column(unique = true)
 	private String titleProduct ;
 	private String descriptionProduct ;
 	private int quantityProduct ;
+	@NotNull
 	private float priceProduct ;
-	private int barcodeProduct ;
+	private String barcodeProduct ;
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
+	private String imagenURL;
+
+	
+	
+	@ManyToOne
+	Order order;
+
 	private String fileName;
+
 
 	
 	@JsonIgnore
@@ -46,7 +60,7 @@ public class Product implements Serializable {
 	
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	UnderCategory UnderCategory;
 
 	@ManyToOne
@@ -110,11 +124,11 @@ public class Product implements Serializable {
 		this.priceProduct = priceProduct;
 	}
 
-	public int getBarcodeProduct() {
+	public String getBarcodeProduct() {
 		return barcodeProduct;
 	}
 
-	public void setBarcodeProduct(int barcodeProduct) {
+	public void setBarcodeProduct(String barcodeProduct) {
 		this.barcodeProduct = barcodeProduct;
 	}
 
@@ -153,10 +167,11 @@ public class Product implements Serializable {
 		Basket = basket;
 	}
 
+	
 	public UnderCategory getUnderCategory() {
 		return UnderCategory;
 	}
-
+	
 	public void setUnderCategory(UnderCategory underCategory) {
 		UnderCategory = underCategory;
 	}
@@ -167,6 +182,18 @@ public class Product implements Serializable {
 
 	public void setStock(Stock stock) {
 		this.stock = stock;
+	}
+	
+	
+
+	
+
+	public String getImagenURL() {
+		return imagenURL;
+	}
+
+	public void setImagenURL(String imagenURL) {
+		this.imagenURL = imagenURL;
 	}
 
 	public Product() {
@@ -191,9 +218,10 @@ public class Product implements Serializable {
 	
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct, String fileName, Department idDepartment, tn.esprit.spring.entity.Basket basket,
 			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock, tn.esprit.spring.entity.FileDB fileDB) {
+
 		super();
 		this.idProduct = idProduct;
 		this.titleProduct = titleProduct;
@@ -227,10 +255,29 @@ public class Product implements Serializable {
 		this.fileName = fileName;
 	}
 
-	
+
+	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
+			String barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct, 
+			tn.esprit.spring.entity.Department department, tn.esprit.spring.entity.Basket basket,
+			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock) {
+		super();
+		this.titleProduct = titleProduct;
+		this.descriptionProduct = descriptionProduct;
+		this.quantityProduct = quantityProduct;
+		this.priceProduct = priceProduct;
+		this.barcodeProduct = barcodeProduct;
+		this.weightProduct = weightProduct;
+		this.buyingPriceProduct = buyingPriceProduct;
+		this.maxQuantityProduct = maxQuantityProduct;
+		idDepartment = department;
+		Basket = basket;
+		UnderCategory = underCategory;
+		this.stock = stock;
+	}
+
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct) {
 		super();
 		this.idProduct = idProduct;
@@ -245,7 +292,7 @@ public class Product implements Serializable {
 	}
 
 	public Product(String titleProduct, String descriptionProduct, int quantityProduct, float priceProduct,
-			int barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct) {
+			String barcodeProduct, float weightProduct, float buyingPriceProduct, int maxQuantityProduct) {
 		super();
 		this.titleProduct = titleProduct;
 		this.descriptionProduct = descriptionProduct;

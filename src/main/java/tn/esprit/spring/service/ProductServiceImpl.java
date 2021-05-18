@@ -5,8 +5,7 @@ package tn.esprit.spring.service;
 
 import java.io.IOException;
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +17,7 @@ import tn.esprit.spring.repository.DepartmentRepository;
 import tn.esprit.spring.repository.FileRepository;
 import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.UnderCategoryRepository;
+import tn.esprit.spring.entity.Department;
 import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.UnderCategory;
@@ -35,10 +35,11 @@ public class ProductServiceImpl implements IProductService {
 	UnderCategoryRepository UCR;
 	@Autowired
 	FileStrorageService FileStorageService;
-	
+	@Autowired
+	UnderCategoryRepository ucr;
 	@Autowired
 	DepartmentRepository dr;
-	
+
 	
 	private static final Logger L = LogManager.getLogger(IProductService.class);
 	
@@ -53,7 +54,14 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override  
-	public Product addProduct(Product p) {
+	public Product addProduct(Product p,int id,int idDepratment) {
+		
+		UnderCategory undercat=ucr.findById(id).get();
+		p.setUnderCategory(undercat);
+		
+		Department dep=dr.findById(idDepratment).get();
+		p.setIdDepartment(dep);
+		
 		productRepository.save(p);
 		return p;
 	}
@@ -95,9 +103,9 @@ public class ProductServiceImpl implements IProductService {
 
 
 	@Override
-	public Product updateProduct(Product p) {
+	public Product updateProduct(int id,Product p) {
 		
-		Product existingProduct=productRepository.findById(p.getIdProduct()).orElse(null);
+		Product existingProduct=productRepository.findById(id).get();
 		
 		
 	
@@ -110,7 +118,7 @@ public class ProductServiceImpl implements IProductService {
 		existingProduct.setBuyingPriceProduct(p.getBuyingPriceProduct());
 		existingProduct.setMaxQuantityProduct(p.getMaxQuantityProduct());
 	
-		return 	productRepository.save(existingProduct);
+		return productRepository.save(existingProduct);
 	
 	}
 
@@ -125,7 +133,10 @@ public class ProductServiceImpl implements IProductService {
 		filerepository.save(image);	
 		
 	}
-
+	
+	
+	
+	
 	@Override
 	public void addImageAndAddUnderCategorie(Product p, int idUnderCategorie, MultipartFile file) {
 		
@@ -161,5 +172,37 @@ public class ProductServiceImpl implements IProductService {
 		
 	
 */
+	
+	//Meissa
+	
+		public List<Product> lista(){
+	        List<Product> lista = (List<Product>) productRepository.findAll();
+	        return lista;
+	    }
+
+	    public Optional<Product> getById(int idProduct){
+	        return productRepository.findById(idProduct);
+	    }
+
+	    public Optional<Product> getByTitle(String titleProduct){
+	        return productRepository.findBytitleProduct(titleProduct);
+	    }
+
+	    public void save(Product product){
+	        productRepository.save(product);
+	    }
+
+	    public void delete(int idProduct){
+	        productRepository.deleteById(idProduct);
+	    }
+
+	    public boolean existsId(int idProduct){
+	        return productRepository.existsById(idProduct);
+	    }
+
+	    public boolean existsTitle(String titleProduct){
+	        return productRepository.existsByTitleProduct(titleProduct);
+	    }
+
 }
 

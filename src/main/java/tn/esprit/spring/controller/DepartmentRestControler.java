@@ -310,18 +310,36 @@ departmentService.allocateFilesToDepartment(idDepartment, idImage);
 			 
 			 
 			 
-			// http://localhost:9091/SpringMVC/servlet/Getprodbydep/{idDepartment}
+			// http://localhost:9091/SpringMVC/servlet/Getprodbydep?id={value}
 
-				@GetMapping("/Getprodbydep/{idDepartment}")
-				public List<Product> getProdsByIdDep(@PathVariable("idDepartment") int idDepartment){
+				@GetMapping("/Getprodbydep")
+				public List<Product> getProdsByIdDep(@RequestParam int id){
 					
-					return departmentService.getProdsByIdDep(idDepartment);
+					return departmentService.getProdsByIdDep(id);
 					
 				}
 				
 			
 	}
+	
+	
+	
+	
+	
+	/*         
+	 
+	 // http://localhost:9091/SpringMVC/servlet/Getprodbydep/{idDepartment}
 
+	@GetMapping("/Getprodbydep/{idDepartment}")
+	public List<Product> getProdsByIdDep(@PathVariable("idDepartment") int idDepartment){
+		
+		return departmentService.getProdsByIdDep(idDepartment);
+		
+	}
+
+	 */
+	
+	
 	
 	
 	
