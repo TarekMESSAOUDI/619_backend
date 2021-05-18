@@ -24,11 +24,13 @@ public class PaymentService {
     @Value("${stripe.key.secret}")
     String secretKey;
 
+
     public PaymentIntent paymentIntent(PaymentIntentDto paymentIntentDto) throws StripeException {
         Stripe.apiKey = secretKey;
         List<String> paymentMethodTypes = new ArrayList();
         paymentMethodTypes.add("card");
         Map<String, Object> params = new HashMap<>();
+
         params.put("amount", paymentIntentDto.getAmount());
         params.put("currency", paymentIntentDto.getCurrency());
         params.put("description", paymentIntentDto.getDescription());
