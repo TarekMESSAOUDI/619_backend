@@ -29,7 +29,9 @@ public class StripeController {
 
 
 
-   // @PreAuthorize("hasAuthority('CLIENT') ")
+
+
+    //@PreAuthorize("hasAuthority('CLIENT') ")
 
 
     //@PostMapping("/paymentintent")
@@ -43,7 +45,7 @@ public class StripeController {
 
 
 
-    @PreAuthorize("hasAuthority('CLIENT') ")
+   // @PreAuthorize("hasAuthority('CLIENT') ")
 
 
     public ResponseEntity<String> confirm(@PathVariable("id") String id) throws StripeException {
@@ -56,7 +58,7 @@ public class StripeController {
 
 
 
-    @PreAuthorize("hasAuthority('CLIENT') ")
+   // @PreAuthorize("hasAuthority('CLIENT') ")
 
     public ResponseEntity<String> cancel(@PathVariable("id") String id) throws StripeException {
         PaymentIntent paymentIntent = paymentService.cancel(id);

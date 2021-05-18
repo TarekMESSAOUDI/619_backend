@@ -127,5 +127,15 @@ public class Cagnotte implements Serializable {
 		this.amountCagnotte = amountCagnotte;
 	}
 
+	public void setCagnotte(Cagnotte c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getFileName() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }

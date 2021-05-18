@@ -60,13 +60,21 @@ public interface IUserService {
 	
 	void lock(User user);
 	
-	public User findUserByResetToken(String token);
+	//public User findUserByResetToken(String token);
 
 	void updateResettoken(String token, String emailUser) throws UserNotFoundException;
 
 	User get(String resettoken);
 
-	void updatePassword(User user, String newPassword);
+	//void updatePassword(User user, String newPassword);
+
+	User getByResetPasswordToken(String token);
+
+	void forgotpass(String emailuser);
+
+	
+
+	void updatePassword(String emailUser, String newPassword, String confirmPassword);
 
 
 }

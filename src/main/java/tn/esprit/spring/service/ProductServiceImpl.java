@@ -134,37 +134,9 @@ public class ProductServiceImpl implements IProductService {
 		
 	}
 	
-	//Meissa
 	
-	public List<Product> list(){
-        List<Product> list = (List<Product>) productRepository.findAll();
-        return list;
-    }
-
-    public Optional<Product> getById(int idProduct){
-        return productRepository.findById(idProduct);
-    }
-
-    public Optional<Product> getByNombre(String nombre){
-        return productRepository.findByNombre(nombre);
-    }
-
-    public void save(Product Product){
-        productRepository.save(Product);
-    }
-
-    public void delete(int idProduct){
-        productRepository.deleteById(idProduct);
-    }
-
-    public boolean existsId(int idProduct){
-        return productRepository.existsById(idProduct);
-    }
-
-    public boolean existsNombre(String nombre){
-        return productRepository.existsByNombre(nombre);
-    }
-
+	
+	
 	@Override
 	public void addImageAndAddUnderCategorie(Product p, int idUnderCategorie, MultipartFile file) {
 		
@@ -200,5 +172,37 @@ public class ProductServiceImpl implements IProductService {
 		
 	
 */
+	
+	//Meissa
+	
+		public List<Product> lista(){
+	        List<Product> lista = (List<Product>) productRepository.findAll();
+	        return lista;
+	    }
+
+	    public Optional<Product> getById(int idProduct){
+	        return productRepository.findById(idProduct);
+	    }
+
+	    public Optional<Product> getByTitle(String titleProduct){
+	        return productRepository.findBytitleProduct(titleProduct);
+	    }
+
+	    public void save(Product product){
+	        productRepository.save(product);
+	    }
+
+	    public void delete(int idProduct){
+	        productRepository.deleteById(idProduct);
+	    }
+
+	    public boolean existsId(int idProduct){
+	        return productRepository.existsById(idProduct);
+	    }
+
+	    public boolean existsTitle(String titleProduct){
+	        return productRepository.existsByTitleProduct(titleProduct);
+	    }
+
 }
 
