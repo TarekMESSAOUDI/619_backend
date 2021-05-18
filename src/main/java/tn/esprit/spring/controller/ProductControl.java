@@ -70,6 +70,7 @@ import tn.esprit.spring.response.Response;
 @RestController
 
 
+
 public class ProductControl {
 	@Autowired
 	FileStrorageService FSS;
@@ -123,8 +124,6 @@ public class ProductControl {
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
 
-	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
-	//@PostMapping("/add-product")
 
 
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")

@@ -125,9 +125,6 @@ public class OrderController {
 	// URL : http://localhost:9091/SpringMVC/servlet/getAllOrder
 
 
-
-
-
 	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 
 				@GetMapping(value = "getAllOrder")
