@@ -108,7 +108,7 @@ public class BillServiceImpl implements IBillService {
 		}
 	 
 
-} 
+
 	 
 //	@Override
 //		public void billpdf (Long idBill){

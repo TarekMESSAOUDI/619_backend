@@ -48,7 +48,7 @@ public class OrderController {
 
 
 
-	@PreAuthorize("hasAuthority('CLIENT')")
+	//@PreAuthorize("hasAuthority('CLIENT')")
 
 
 	@PostMapping("/add-order")
@@ -72,7 +72,7 @@ public class OrderController {
 
 
 
-	@PreAuthorize("hasAuthority('CLIENT')")
+	//@PreAuthorize("hasAuthority('CLIENT')")
 
 
 				@PutMapping("/modify-order")
@@ -113,7 +113,7 @@ public class OrderController {
 
 
 
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 
 				 @DeleteMapping(value = "delete-order/{idOrder}")
 				   
@@ -124,11 +124,11 @@ public class OrderController {
 	
 	// URL : http://localhost:9091/SpringMVC/servlet/getAllOrder
 
-	@PreAuthorize("hasAuthority('CLIENT')")
 
 
 
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 
 				@GetMapping(value = "getAllOrder")
 				  
