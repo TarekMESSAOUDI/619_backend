@@ -24,7 +24,7 @@ import tn.esprit.spring.service.IUserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 
 @RestController
 public class UserRestController {

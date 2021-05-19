@@ -80,11 +80,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/Productss").permitAll()
 		.antMatchers("/servlet/zxing").permitAll()
 		.antMatchers("/servlet/department/{id}").permitAll()
+		
+		.antMatchers("/servlet/add-category").permitAll()
+		
+		.antMatchers("/servlet/add-underCategory/{CategoryId}").permitAll()
 
-
+		.antMatchers("/servlet/remove-product/{productId}").permitAll()
 		
 	
-
+		
 		
 		
 	
@@ -111,6 +115,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 		.antMatchers("/servlet/nbstocks").permitAll()
+		
+		
+		.antMatchers("/servlet/underCatProds/{idUnderCat}").permitAll()
+
 
 		
 		

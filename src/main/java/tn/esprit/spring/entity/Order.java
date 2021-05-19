@@ -137,14 +137,14 @@ public class Order implements Serializable {
 		
 	}
 
-	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
+	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder,
 			PaymentType paymentType, Bill bill, User user, Set<Product> products) {
 		super();
 		this.dateOrder = dateOrder;
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;

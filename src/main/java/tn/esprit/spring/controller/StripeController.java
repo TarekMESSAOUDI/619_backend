@@ -29,15 +29,15 @@ public class StripeController {
 
 
 
-    @PreAuthorize("hasAuthority('CLIENT') ")
+   // @PreAuthorize("hasAuthority('CLIENT') ")
 
 
-    @PostMapping("/paymentintent")
-    public ResponseEntity<String> payment(@RequestBody PaymentIntentDto paymentIntentDto) throws StripeException {
-        PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentDto);
-        String paymentStr = paymentIntent.toJson();
-        return new ResponseEntity<String>(paymentStr, HttpStatus.OK);
-    }
+    //@PostMapping("/paymentintent")
+    //public ResponseEntity<String> payment(@RequestBody PaymentIntentDto paymentIntentDto) throws StripeException {
+      //  PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentDto);
+        //String paymentStr = paymentIntent.toJson();
+       // return new ResponseEntity<String>(paymentStr, HttpStatus.OK);
+    //}
 
     @PostMapping("/confirm/{id}")
 

@@ -37,15 +37,15 @@ public class Product implements Serializable {
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
 
-	@NotBlank
+
 	@Column(unique = true)
 	private String nombre;
 	private String description;
-	@NotNull
+	
 	private int prix;
 	private String imageURL;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="products")
 	private Set<Order> order;
 
 	private String fileName;
