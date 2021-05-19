@@ -26,6 +26,8 @@ public class Delivery implements Serializable {
 	private int idDelivery ;
 	@Temporal (TemporalType.DATE)
 	private Date dateDelivery ;
+	private String NameProduct;
+	private String DetailleDelivery;
 	private String placeDelivery ;
 	private boolean stateDelivery ;
 	@Enumerated (EnumType.STRING)
@@ -128,6 +130,25 @@ public class Delivery implements Serializable {
 	public void setCosts(int costs) {
 		this.costs = costs;
 	}
+	
+	
+	
+
+	public String getNameProduct() {
+		return NameProduct;
+	}
+
+	public void setNameProduct(String nameProduct) {
+		NameProduct = nameProduct;
+	}
+
+	public String getDetailleDelivery() {
+		return DetailleDelivery;
+	}
+
+	public void setDetailleDelivery(String detailleDelivery) {
+		DetailleDelivery = detailleDelivery;
+	}
 
 	public Delivery() {
 		super();
@@ -196,6 +217,25 @@ public class Delivery implements Serializable {
 		this.status = status;
 		this.kilometrage = kilometrage;
 		this.costs = costs;
+	}
+
+	public Delivery(int idDelivery, Date dateDelivery, String nameProduct, String detailleDelivery,
+			String placeDelivery, boolean stateDelivery, MeansOfTransport meansOfTransportDelivery,
+			String adressDelivery, boolean finishedDelivery, Status status, int kilometrage, int costs, User user) {
+		super();
+		this.idDelivery = idDelivery;
+		this.dateDelivery = dateDelivery;
+		NameProduct = nameProduct;
+		DetailleDelivery = detailleDelivery;
+		this.placeDelivery = placeDelivery;
+		this.stateDelivery = stateDelivery;
+		this.meansOfTransportDelivery = meansOfTransportDelivery;
+		this.adressDelivery = adressDelivery;
+		this.finishedDelivery = finishedDelivery;
+		this.status = status;
+		this.kilometrage = kilometrage;
+		this.costs = costs;
+		this.user = user;
 	}
 
 	

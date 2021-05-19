@@ -145,6 +145,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/authenticate").permitAll()
 
 
+		
+		.antMatchers("/servlet/retrieve-all-claims").permitAll()
+		.antMatchers("/servlet/remove-claim/{claim-id}").permitAll()
+		.antMatchers("/servlet/add-claim").permitAll()
+		.antMatchers("/servlet/remove-delivery/{Delivery-id}").permitAll()
+		
+		
+		.antMatchers("/servlet/addDelivery").permitAll() 
+		.antMatchers("/servlet/addEvent").permitAll()  
+		.antMatchers("/servlet/remove-event/{idEvent}").permitAll()
+		
+		
+		.antMatchers("/servlet/retrievealldelivery").permitAll()
+		.antMatchers("/servlet/remove-claim/{claim-id}").permitAll()
+		
+		.antMatchers("/servlet/affect-Delivery-to-DeliveryPerson/{idDeliv}/{idUser}").permitAll()
+
+
 		.antMatchers("/servlet/add-user").permitAll()
 		.antMatchers("/servlet/update-user").permitAll()
 		.antMatchers("/servlet/ajouter-user").permitAll()
@@ -171,7 +189,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/retrieveallEvent").permitAll()
 		.antMatchers("/servlet/FaireReservation/{idReservation}/{idUser}/{idEvent}").permitAll()
 		.antMatchers("/servlet/addReservation").permitAll()
-		.antMatchers("/servlet/add-claim").permitAll()
+		
 		.antMatchers("/servlet/retrieve-claim/{claim-id}").permitAll()
 		.antMatchers("/servlet/retrieve-all-Comments").permitAll()
 		.antMatchers("/servlet/retrieve-comment/{comment-id}").permitAll()
@@ -234,8 +252,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/servlet/Productss").permitAll()
 		.antMatchers("/servlet/Imgarticles/{id}").permitAll()
 		
+		.antMatchers("/servlet/ajouter-user").permitAll()
 		
 
+		.antMatchers("/servlet/retrieve-all-user").permitAll()
+		
+		
+		 
 		// all other requests need to be authenticated
 		.anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to

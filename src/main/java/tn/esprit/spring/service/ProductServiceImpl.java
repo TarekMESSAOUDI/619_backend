@@ -60,7 +60,11 @@ public class ProductServiceImpl implements IProductService {
 		p.setUnderCategory(undercat);
 		
 		Department dep=dr.findById(idDepratment).get();
+
+		//p.setDepartment(dep);
+
 		p.setIdDepartment(dep);
+
 		
 		productRepository.save(p);
 		return p;
