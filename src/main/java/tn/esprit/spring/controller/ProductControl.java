@@ -15,6 +15,13 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +32,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +40,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,9 +52,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
 import ch.qos.logback.core.Context;
+import http.Mensaje;
 import io.netty.handler.ipfilter.IpSubnetFilter;
 import tn.esprit.spring.ResourceNotFoundException.ResourceNotFoundException;
+import tn.esprit.spring.entity.Articulo;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.UnderCategory;
 import tn.esprit.spring.repository.ProductRepository;
@@ -50,8 +66,11 @@ import tn.esprit.spring.repository.UnderCategoryRepository;
 import tn.esprit.spring.response.Response;
 
 
-@RestController
 @CrossOrigin
+@RestController
+
+
+
 public class ProductControl {
 	@Autowired
 	FileStrorageService FSS;
@@ -105,8 +124,11 @@ public class ProductControl {
 	
 	//http://localhost:9090/SpringMVC/servlet/add-product
 
+
+
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER')")
 	@PostMapping("/add-product/{iduc}/{idDep}")
+
 	@ResponseBody
 	public Product addProduct(@RequestBody Product p,@PathVariable("iduc")int iduc,@PathVariable("idDep")int idDep) {
 	Product prod = productService.addProduct(p,iduc,idDep);
@@ -197,6 +219,14 @@ public class ProductControl {
 //		return pr.GetproductByidUcandTitle(idUnderCategory, titleProduct);
 //				
 //		}
+
+	
+	
+
+    
+    
+	
+
 		
 		@GetMapping("/GETALLPRODUCTS")
 		public List<Product> getAllProds(){
@@ -307,5 +337,35 @@ public class ProductControl {
 				return response;
 			}
 		 
+	//meissa
 		 
-}
+		 @GetMapping("/lista")
+		    public ResponseEntity<List<Product>> lista(){
+		        List<Product> lista = productService.lista();
+		        return new ResponseEntity<List<Product>>(lista, HttpStatus.OK);
+		    }
+
+		 @GetMapping("/detalle/{idProduct}")
+		    public ResponseEntity<Product> detalle(@PathVariable("idProduct") int idProduct){
+		        if(!productService.existsId(idProduct))
+		            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+		        Product product = productService.getById(idProduct).get();
+		        return new ResponseEntity<Product>(product, HttpStatus.OK);
+		    }
+		 
+//		  @PostMapping("/nuevo")
+//		    public ResponseEntity<?> crear(@RequestBody Product product){
+//		        if(StringUtils.isBlank(product.getTitleProduct()));
+//		            return new ResponseEntity(new Mensaje("numbre obligatoir"), HttpStatus.BAD_REQUEST);
+//		        if((Float) product.getPriceProduct() == null || product.getPriceProduct() < 1)
+//		            return new ResponseEntity(new Mensaje("prix obligatoir"), HttpStatus.BAD_REQUEST);
+//		        if(productService.existsTitle(product.getTitleProduct()));
+//	            return new ResponseEntity(new Mensaje("that number already exists"), HttpStatus.BAD_REQUEST);
+//	        productService.save(product);
+//	        return new ResponseEntity(new Mensaje("articl created"), HttpStatus.CREATED);
+//		        
+//		    }
+
+	}
+
+

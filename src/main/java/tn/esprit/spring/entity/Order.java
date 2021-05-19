@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -35,7 +36,6 @@ public class Order implements Serializable {
 	private int productNumberOrder ;
 	private String stateOrder ;
 	private float amountOrder ;
-	private double prix;
 	@Enumerated(EnumType.STRING)
 	private PaymentType paymentType;
 	
@@ -46,8 +46,10 @@ public class Order implements Serializable {
 	@ManyToOne
 	User user;
 	
-	@OneToMany
-	private Set<Product> products;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="order")
+	private Set<Product> product;
+	
+	
 
 	public Long getIdOrder() {
 		return idOrder;
@@ -89,13 +91,7 @@ public class Order implements Serializable {
 		this.amountOrder = amountOrder;
 	}
 
-	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
+	
 
 	public PaymentType getPaymentType() {
 		return paymentType;
@@ -137,26 +133,14 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
 		
 	}
 
-	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
-			PaymentType paymentType, Bill bill, User user, Set<Product> products) {
-		super();
-		this.dateOrder = dateOrder;
-		this.productNumberOrder = productNumberOrder;
-		this.stateOrder = stateOrder;
-		this.amountOrder = amountOrder;
-		this.prix = prix;
-		this.paymentType = paymentType;
-		this.bill = bill;
-		this.user = user;
-		this.products = products;
-	}
+
 
 	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
 			PaymentType paymentType, tn.esprit.spring.entity.Bill bill, User user,
@@ -166,7 +150,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 		this.bill = bill;
 		this.user = user;
@@ -181,16 +165,20 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+		
 		this.paymentType = paymentType;
 	}
 
-	public Set<Product> getProducts() {
-		return products;
+	
+
+	
+
+	public Set<Product> getProduct() {
+		return product;
 	}
 
-	public void setProducts(Set<Product> products) {
-		this.products = products;
+	public void setProduct(Set<Product> product) {
+		this.product = product;
 	}
 
 	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
@@ -200,7 +188,7 @@ public class Order implements Serializable {
 		this.productNumberOrder = productNumberOrder;
 		this.stateOrder = stateOrder;
 		this.amountOrder = amountOrder;
-		this.prix = prix;
+	
 		this.paymentType = paymentType;
 	}
 

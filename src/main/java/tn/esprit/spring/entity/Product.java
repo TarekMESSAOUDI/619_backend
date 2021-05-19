@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,15 +28,27 @@ public class Product implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProduct ;
+	@NotBlank
+    @Column(unique = true)
 	private String titleProduct ;
 	private String descriptionProduct ;
 	private int quantityProduct ;
+	@NotNull
 	private float priceProduct ;
 	private String barcodeProduct ;
 	private float weightProduct ;
 	private float buyingPriceProduct ;
 	private int maxQuantityProduct ;
+	private String imagenURL;
+
+	
+	
+	@ManyToOne
+	Order order;
+
+
 	private String fileName;
+
 
 	
 	@JsonIgnore
@@ -169,6 +184,18 @@ public class Product implements Serializable {
 	public void setStock(Stock stock) {
 		this.stock = stock;
 	}
+	
+	
+
+	
+
+	public String getImagenURL() {
+		return imagenURL;
+	}
+
+	public void setImagenURL(String imagenURL) {
+		this.imagenURL = imagenURL;
+	}
 
 	public Product() {
 		super();
@@ -192,7 +219,7 @@ public class Product implements Serializable {
 	
 
 	public Product(int idProduct, String titleProduct, String descriptionProduct, int quantityProduct,
-			float priceProduct, int barcodeProduct, float weightProduct, float buyingPriceProduct,
+			float priceProduct, String barcodeProduct, float weightProduct, float buyingPriceProduct,
 			int maxQuantityProduct, String fileName, Department idDepartment, tn.esprit.spring.entity.Basket basket,
 			tn.esprit.spring.entity.UnderCategory underCategory, Stock stock, tn.esprit.spring.entity.FileDB fileDB) {
 
@@ -243,7 +270,11 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
+
 		//Department = department;
+
+		idDepartment = department;
+
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;

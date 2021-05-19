@@ -5,8 +5,7 @@ package tn.esprit.spring.service;
 
 import java.io.IOException;
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,7 +60,11 @@ public class ProductServiceImpl implements IProductService {
 		p.setUnderCategory(undercat);
 		
 		Department dep=dr.findById(idDepratment).get();
+
 		//p.setDepartment(dep);
+
+		p.setIdDepartment(dep);
+
 		
 		productRepository.save(p);
 		return p;
@@ -134,7 +137,10 @@ public class ProductServiceImpl implements IProductService {
 		filerepository.save(image);	
 		
 	}
-
+	
+	
+	
+	
 	@Override
 	public void addImageAndAddUnderCategorie(Product p, int idUnderCategorie, MultipartFile file) {
 		
@@ -170,5 +176,37 @@ public class ProductServiceImpl implements IProductService {
 		
 	
 */
+	
+	//Meissa
+	
+		public List<Product> lista(){
+	        List<Product> lista = (List<Product>) productRepository.findAll();
+	        return lista;
+	    }
+
+	    public Optional<Product> getById(int idProduct){
+	        return productRepository.findById(idProduct);
+	    }
+
+	    public Optional<Product> getByTitle(String titleProduct){
+	        return productRepository.findBytitleProduct(titleProduct);
+	    }
+
+	    public void save(Product product){
+	        productRepository.save(product);
+	    }
+
+	    public void delete(int idProduct){
+	        productRepository.deleteById(idProduct);
+	    }
+
+	    public boolean existsId(int idProduct){
+	        return productRepository.existsById(idProduct);
+	    }
+
+	    public boolean existsTitle(String titleProduct){
+	        return productRepository.existsByTitleProduct(titleProduct);
+	    }
+
 }
 

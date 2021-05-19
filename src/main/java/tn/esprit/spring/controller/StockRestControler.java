@@ -119,14 +119,25 @@ public class StockRestControler {
 			
 
 
-//http://localhost:9090/SpringMVC/servlet/maxquantity
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+//http://localhost:9091/SpringMVC/servlet/maxquantity
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 			@GetMapping("/maxquantity")
 			public int getmaxquantity() {
 				 return sr.MaxQuantity();
 
 			}
 			
+	
+	
+
+	// http://localhost:9091/SpringMVC/servlet/nbstocks
+		@GetMapping("/nbstocks")
+		public int getnbStocks() {
+			
+			return sr.stocknumber();
+		}
+	
+	
 			
 			
 }
