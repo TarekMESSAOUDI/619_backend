@@ -49,7 +49,7 @@ public class CharityEventRestController {
 				
 				
 				// http://localhost:9091/SpringMVC/servlet/remove-event/{idDelivery}
-				@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+				//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 				@DeleteMapping("/remove-event/{idEvent}")
 				@ResponseBody
 				public void removeEvent(@PathVariable("idEvent") int id) {

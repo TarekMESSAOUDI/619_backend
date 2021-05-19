@@ -87,11 +87,11 @@ public class DeliveryRestControlIer{
 					
 					
 				}
-				
+				 
 				
 				
 				//http://localhost:9091/SpringMVC/servlet/affect-Delivery-to-DeliveryPerson/{idDeliv}/{idUser}
-		        @PreAuthorize("hasAuthority('ADMINISTRATOR')")
+		        //@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 				@PutMapping("/affect-Delivery-to-DeliveryPerson/{idDeliv}/{idUser}")
 				public void affecterDelivery(@PathVariable(value = "idDeliv") int idDelivery,
 				@PathVariable(value = "idUser") int idUser) {
