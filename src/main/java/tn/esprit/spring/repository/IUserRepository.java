@@ -33,13 +33,14 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	
 	long  count();
 	
-	User findUserByresettoken(String login);
+    public User findByResetPasswordToken(String token);
+	
+	//User findUserByresettoken(String login);
 	
 	User findByEmailUser(String emailUser);
 	
 	List<User> findByRole(Role role);
 	
-	public User findByResettoken(String token);
 	
 	@Query("SELECT AVG(u.salaire) from User u")
 	float retrievemoysalaire();
@@ -69,5 +70,7 @@ public interface IUserRepository extends CrudRepository<User, Integer>{
 	List<String> getphonegroupbyadress();
 	
 	@Query("SELECT MAX(e.birthDateUser) FROM User e ")
-	Date getminage();
+	Date getminage(); 
+     
+
 }

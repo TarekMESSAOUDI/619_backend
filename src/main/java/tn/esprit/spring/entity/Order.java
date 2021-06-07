@@ -140,7 +140,7 @@ public class Order implements Serializable {
 		
 	}
 
-	
+
 
 	public Order(Date dateOrder, int productNumberOrder, String stateOrder, float amountOrder, double prix,
 			PaymentType paymentType, tn.esprit.spring.entity.Bill bill, User user,

@@ -86,6 +86,7 @@ public class PublicityControl {
 	
 	//http://localhost:9090/SpringMVC/servlet/add-publicity
 //	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+
 	@PostMapping("/add-publicity")
 	@ResponseBody
 	public Publicity addPublicity(@RequestBody Publicity pub) {
@@ -94,7 +95,7 @@ public class PublicityControl {
 	}
 	
 	//http://localhost:9090/SpringMVC/servlet/remove-publicity/{pubId}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@DeleteMapping("/remove-publicity/{pubId}")
 	@ResponseBody
 	public void removePublicity(@PathVariable("pubId") int id) {
@@ -103,8 +104,10 @@ public class PublicityControl {
 	
 	
 	//http://localhost:9090/SpringMVC/servlet/update-publicity
-//	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
-	@PutMapping("/update-publicity/{Idpublicity}")
+
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	@PutMapping("/update-publicity")
+
 	@ResponseBody
 	public Publicity updatepublicity(@PathVariable(value ="Idpublicity") int Idpublicity,@RequestBody Publicity pub) {
 	return PS.updatePublicity(Idpublicity,pub);
@@ -112,7 +115,7 @@ public class PublicityControl {
 	}
 	
 	//	http://localhost:9090/SpringMVC/servlet/affect-image-to-publicity/{Idpublicity}/{Idimage}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PutMapping("/affect-image-to-publicity/{Idpublicity}/{Idimage}")
 	public void affectImageToPublicity(@PathVariable(value = "Idpublicity") int Idpublicity,
 			@PathVariable(value = "Idimage") int Idimage) {
@@ -122,7 +125,7 @@ public class PublicityControl {
 	
 	
 //	http://localhost:9090/SpringMVC/servlet/CalculateTotalCost/{Canal}/{Sdate}/{Fdate}/{Tpub}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/CalculateTotalCost/{Canal}/{Sdate}/{Fdate}/{Tpub}")
 	public float CalculateTotalCost(@PathVariable(value = "Canal") String canal,@PathVariable(value = "Sdate") String dateDebut,
 			@PathVariable(value = "Fdate")String dateFin,@PathVariable(value = "Tpub") String typePub) throws ParseException {
@@ -131,7 +134,7 @@ public class PublicityControl {
 }
 	
 //	http://localhost:9090/SpringMVC/servlet/costOnNbrDays/{Sdate}/{Fdate}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	@PostMapping("/costOnNbrDays/{Sdate}/{Fdate}")
 	public float costOnNbrDays(@PathVariable(value = "Sdate") String dateDebut,
 			@PathVariable(value = "Fdate")String dateFin) throws ParseException {

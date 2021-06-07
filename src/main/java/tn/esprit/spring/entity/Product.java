@@ -46,6 +46,7 @@ public class Product implements Serializable {
 	@ManyToOne
 	Order order;
 
+
 	private String fileName;
 
 
@@ -228,7 +229,7 @@ public class Product implements Serializable {
 		this.descriptionProduct = descriptionProduct;
 		this.quantityProduct = quantityProduct;
 		this.priceProduct = priceProduct;
-		this.barcodeProduct = barcodeProduct;
+		//this.barcodeProduct = barcodeProduct;
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
@@ -269,7 +270,11 @@ public class Product implements Serializable {
 		this.weightProduct = weightProduct;
 		this.buyingPriceProduct = buyingPriceProduct;
 		this.maxQuantityProduct = maxQuantityProduct;
+
+		//Department = department;
+
 		idDepartment = department;
+
 		Basket = basket;
 		UnderCategory = underCategory;
 		this.stock = stock;

@@ -1,14 +1,21 @@
 package tn.esprit.spring.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 import java.util.UUID;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,7 +27,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +37,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.twilio.type.PhoneNumber;
+
+import net.bytebuddy.utility.RandomString;
 import tn.esprit.spring.config.JwtTokenUtil;
+import tn.esprit.spring.entity.Delivery;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.Utility;
+import tn.esprit.spring.exception.UserNotFoundException;
 import tn.esprit.spring.response.JwtRequest;
 import tn.esprit.spring.response.JwtResponse;
 import tn.esprit.spring.security.JwtUserDetailsService;
@@ -59,89 +74,6 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JavaMailSender jms;
 	
-	// http://localhost:9091/SpringMVC/servlet/forgot/{email}
-	/*@PostMapping("/forgot/{email}")
-	public String processForgotPasswordForm(@PathVariable("email") String emailUser,
-			HttpServletRequest request){
-		String email = request.getParameter("emailUser");
-		String token = RandomString.make(45);
-		
-		try {
-			us.updateResettoken(token, email);
-			
-			String resetPasswordLink = "/updateResettoken?token="+ token;
-			
-			try {
-				sendEmail(email, resetPasswordLink);
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "password updated";
-	}
-	
-	*/
-	
-	@PostMapping("/sending")
-	private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
-		MimeMessage message = jms.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message);
-		
-		helper.setFrom("tarek.messaoudi.1996@gmail.com","curvanord123kingzoogataga");
-		helper.setTo(email);
-		helper.setReplyTo("messaouditarek22@gmail.com");		
-		String subject = "Here's the link to reset your password";
-		String content = "<p>Hello</p>"
-							+"You have requested to reset your password."
-							+"Click the link below to change your password:"
-							+"<a href=\"" +resetPasswordLink + "\">Change my password</a>";
-	
-		helper.setSubject(subject);
-		helper.setText(content,true);
-		
-		jms.send(message);
-	}
-
-
-
-
-	//http://localhost:9091/SpringMVC/servlet/forgot/{email}
-	@PostMapping("/forgot/{email}")
-	public String processForgotPasswordForm(@PathVariable("email") String emailUser,
-			HttpServletRequest request) throws Exception {
-		User user = us.findBymail(emailUser);
-
-		if (user == null) {
-			return "user not found";
-		} else {
-			// Generate random 36-character string token for reset password
-			user.setResettoken(UUID.randomUUID().toString());
-
-			// Save token to database
-			us.updateUser(user);
-
-			String appUrl = request.getServerName()+":"+request.getServerPort()+request.getContextPath();
-
-			// Email message
-			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setTo(user.getEmailUser());
-			passwordResetEmail.setSubject("Password Reset Request");
-			passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl +  "/servlet/update-user"
-					+ user.getResettoken());
-
-			es.sendEmail(passwordResetEmail);
-		}
-		return "mail sent";
-	}
 
 	// http://localhost:9091/SpringMVC/servlet/authenticate
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
@@ -168,15 +100,5 @@ public class JwtAuthenticationController {
 		}
 	}
 	
-	/*@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public <Login> ResponseEntity<?>  createAuthenticationToken(@Valid @RequestBody Login loginRequest){
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-				((UserDetails) loginRequest).getUsername(), ((UserDetails) loginRequest).getPassword()));
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);;
-		String jwt = JwtTokenUtil.generateToken(authentication);
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	
-	}*/
 }
