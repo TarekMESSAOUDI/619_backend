@@ -24,7 +24,9 @@ import tn.esprit.spring.service.IDeliveryService;
 
 
 @RestController
+
 @CrossOrigin("http://localhost:4200")
+
 public class DeliveryRestControlIer{
 	
 	

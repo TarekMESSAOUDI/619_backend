@@ -18,7 +18,9 @@ import tn.esprit.spring.entity.Claim;
 import tn.esprit.spring.service.IClaimService;
 
 @RestController
+
 @CrossOrigin("http://localhost:4200")
+
 public class ClaimRestController{
 	
 	@Autowired

@@ -28,12 +28,11 @@ public class Product implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProduct ;
-	@NotBlank
-    @Column(unique = true)
+	
 	private String titleProduct ;
 	private String descriptionProduct ;
 	private int quantityProduct ;
-	@NotNull
+	
 	private float priceProduct ;
 	private String barcodeProduct ;
 	private float weightProduct ;

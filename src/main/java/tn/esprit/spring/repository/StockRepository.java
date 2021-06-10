@@ -31,6 +31,11 @@ List<Stock> findByName(@Param("t")String nameStock);
 	@Query("SELECT COUNT(*) FROM Stock")
 public int stocknumber();
 	
+	
+	
+	@Query("SELECT SUM(s.costStock) FROM Stock s")
+	public int stockcosty();
+	
 }
 
 
