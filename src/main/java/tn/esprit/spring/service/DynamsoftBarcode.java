@@ -27,11 +27,9 @@ public class DynamsoftBarcode {
     }
     
 
-    
-    
 
-    
-
+  
+  public BarcodeResponse decode(String filename, java.io.InputStream inputStream) {
 
         try {
            LOG.info("Decoding barcodes...");
@@ -52,16 +50,18 @@ public class DynamsoftBarcode {
             if (barcodeReader != null) {
                 barcodeReader = null;
             }
-            return BarcodeResponse.builder().filename(filename).results(allResults).formats(allFormats).build();
+          return BarcodeResponse.builder().filename(filename).results(allResults).formats(allFormats).build();
         } catch (Exception ex) {
             LOG.error(ex.getMessage());
             return BarcodeResponse.builder().filename(filename).error(ex.getMessage()).build();
         }
     }
 
+
     
     
 */
+
 
 }
 

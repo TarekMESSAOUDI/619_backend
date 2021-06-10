@@ -32,7 +32,11 @@ public class ZXingBarcode {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ZXingBarcode.class);
 
+
+  
+
     public BarcodeResponse decode(String filename, InputStream is) {
+
         try {
             LOG.info("Decoding barcodes...");
             BufferedImage image = ImageIO.read(is);
@@ -68,8 +72,11 @@ public class ZXingBarcode {
             LOG.error(ex.getMessage());
             return BarcodeResponse.builder().filename(filename).error(ex.getMessage()).build();
         }
-  }
+
+  }}
+
+  
 	
 	
 
-}
+
