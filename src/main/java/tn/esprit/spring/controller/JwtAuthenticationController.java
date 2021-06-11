@@ -43,7 +43,6 @@ import net.bytebuddy.utility.RandomString;
 import tn.esprit.spring.config.JwtTokenUtil;
 import tn.esprit.spring.entity.Delivery;
 import tn.esprit.spring.entity.User;
-import tn.esprit.spring.entity.Utility;
 import tn.esprit.spring.exception.UserNotFoundException;
 import tn.esprit.spring.response.JwtRequest;
 import tn.esprit.spring.response.JwtResponse;

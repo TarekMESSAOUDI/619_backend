@@ -97,7 +97,7 @@ public class StockRestControler {
 			
 			
 			// http://localhost:9090/SpringMVC/servlet/allocateProductToStock/{ids}/{idp}
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
+	//@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('DEPARTMENTMANAGER') ")
 			@PutMapping("/allocateProductToStock/{idstock}/{idproduct}")
 			public void allocateProductToStock(@PathVariable(value = "idstock") Long idStock ,@PathVariable(value = "idproduct") int idProduct){
 							
@@ -138,6 +138,12 @@ public class StockRestControler {
 		}
 	
 	
+		// http://localhost:9091/SpringMVC/servlet/costystocks
+				@GetMapping("/costystocks")
+				public int getcostyStocks() {
+					
+					return sr.stockcosty();
+				}
 			
 			
 }

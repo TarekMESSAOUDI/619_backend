@@ -36,7 +36,7 @@ public class Stock implements Serializable {
 	private Date validityStock ;
 	private Long capacityStock ;
 	private Long quantityStock ;
-	private float costStock ;
+	private int costStock ;
 	private Long maxStock;
 	private Long minStock;
 	
@@ -96,7 +96,7 @@ public class Stock implements Serializable {
 		return costStock;
 	}
 
-	public void setCostStock(float costStock) {
+	public void setCostStock(int costStock) {
 		this.costStock = costStock;
 	}
 
@@ -139,7 +139,7 @@ public class Stock implements Serializable {
 	}
 
 	public Stock(Long idStock, String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock,
-			Long capacityStock, Long quantityStock, float costStock, List<Product> product) {
+			Long capacityStock, Long quantityStock, int costStock, List<Product> product) {
 		super();
 		this.idStock = idStock;
 		this.nameStock = nameStock;
@@ -152,7 +152,7 @@ public class Stock implements Serializable {
 	}
 
 	public Stock(String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock, Long capacityStock,
-			Long quantityStock, float costStock, List<Product> product) {
+			Long quantityStock, int costStock, List<Product> product) {
 		super();
 		this.nameStock = nameStock;
 		TypeStock = typeStock;
@@ -164,7 +164,7 @@ public class Stock implements Serializable {
 	}
 
 	public Stock(Long idStock, String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock,
-			Long capacityStock, Long quantityStock, float costStock) {
+			Long capacityStock, Long quantityStock, int costStock) {
 		super();
 		this.idStock = idStock;
 		this.nameStock = nameStock;
@@ -176,7 +176,7 @@ public class Stock implements Serializable {
 	}
 
 	public Stock(String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock, Long capacityStock,
-			Long quantityStock, float costStock) {
+			Long quantityStock, int costStock) {
 		super();
 		this.nameStock = nameStock;
 		TypeStock = typeStock;
@@ -187,7 +187,7 @@ public class Stock implements Serializable {
 	}
 
 	public Stock(Long idStock, String nameStock, tn.esprit.spring.entity.TypeStock typeStock, Date validityStock,
-			Long capacityStock, Long quantityStock, float costStock, Long maxStock, Long minStock,
+			Long capacityStock, Long quantityStock, int costStock, Long maxStock, Long minStock,
 			List<Product> product) {
 		super();
 		this.idStock = idStock;
