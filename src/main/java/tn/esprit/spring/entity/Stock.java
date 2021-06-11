@@ -43,7 +43,7 @@ public class Stock implements Serializable {
 	@JsonIgnore
 	@OneToMany( mappedBy="stock",cascade = CascadeType.ALL)
 	private List<Product> product;
-
+//
 	public Long getIdStock() {
 		return idStock;
 	}
